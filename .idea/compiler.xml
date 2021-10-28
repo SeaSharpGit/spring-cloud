@@ -7,12 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="user-biz" />
-        <module name="gateway" />
         <module name="user-api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="device-biz" target="1.8" />
+      <module name="gateway" target="1.7" />
       <module name="nacos" target="1.8" />
     </bytecodeTargetLevel>
   </component>
