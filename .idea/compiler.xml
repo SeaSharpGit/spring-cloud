@@ -12,8 +12,11 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="device-biz" target="1.8" />
-      <module name="gateway" target="1.7" />
+      <module name="gateway" target="8" />
       <module name="nacos" target="1.8" />
+      <module name="user" target="8" />
+      <module name="user-api" target="8" />
+      <module name="user-biz" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
