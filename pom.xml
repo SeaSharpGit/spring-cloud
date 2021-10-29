@@ -62,6 +62,16 @@
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <!-- 编译期执行 -->
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
     <repositories>
         <!--阿里云代理-->
         <repository>
