@@ -10,6 +10,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>user</module>
+        <module>gateway</module>
+        <module>common</module>
     </modules>
 
     <properties>
@@ -82,7 +84,7 @@
     </repositories>
 
     <build>
-        <!-- 指定resources路径，让pom.xml可以读取yml中的配置 -->
+        <!-- 指定resources路径，让pom可以读取yml中的配置 -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
