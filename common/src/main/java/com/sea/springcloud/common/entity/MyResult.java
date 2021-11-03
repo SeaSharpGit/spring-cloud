@@ -12,10 +12,10 @@ public class MyResult<T> {
     private T data;
 
     public static <T> MyResult<T> ok(T data) {
-        return new MyResult<>(200, data);
+        return new MyResult<>(0, data);
     }
 
     public static MyResult<String> error(String msg) {
-        return new MyResult(500, msg);
+        return new MyResult(1, msg);
     }
 }

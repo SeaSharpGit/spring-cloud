@@ -11,7 +11,7 @@ spring:
     gateway:
       routes:
         - id: test1
-          uri: http://127.0.0.1:10001
+          uri: lb://user-biz
           predicates:
             - Path=/user/**
           filters:
