@@ -39,4 +39,15 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>gateway</finalName>
+        <plugins>
+            <!-- 解决jar包无法运行问题：no main manifest attribute -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
