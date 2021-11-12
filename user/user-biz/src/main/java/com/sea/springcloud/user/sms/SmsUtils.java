@@ -1,5 +1,6 @@
 package com.sea.springcloud.user.sms;
 
+import com.alibaba.fastjson.JSON;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -11,10 +12,11 @@ import java.util.Map;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-@EnableConfigurationProperties(SmsProperties.class)
+//@EnableConfigurationProperties(SmsProperties.class)
 public class SmsUtils {
 
-    private final SmsProperties smsProperties;
+
+   // private final SmsProperties smsProperties;
 
 //    public void sendMsg(String phone, String aLiYunSmsTemplateCode, String... parameters) throws Exception {
 //        Map<String, String> map = new HashMap<>();

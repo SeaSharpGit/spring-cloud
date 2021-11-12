@@ -5,6 +5,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @Data
-@ConfigurationProperties(prefix = "sms")
+//@ConfigurationProperties(prefix = "sms")
 public class SmsProperties {
 }
