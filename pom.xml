@@ -17,9 +17,10 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <spring-boot.version>2.4.4</spring-boot.version>
+        <spring-boot.version>2.4.3</spring-boot.version>
         <spring-cloud.version>2020.0.2</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
+        <fastjson.version>1.2.78</fastjson.version>
     </properties>
 
     <dependencyManagement>
@@ -74,12 +75,6 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <!-- fastjson -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>1.2.78</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -91,6 +86,11 @@
             <!-- 编译期执行 -->
             <scope>provided</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-configuration-processor</artifactId>-->
+<!--            <optional>true</optional>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
