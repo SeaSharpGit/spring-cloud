@@ -1,4 +1,4 @@
-package com.sea.springcloud.user.sms;
+package com.sea.springcloud.common.sms.entity;
 
 import lombok.Data;
 

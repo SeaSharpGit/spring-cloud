@@ -1,6 +1,6 @@
 package com.sea.springcloud.user.controller;
 
-import com.sea.springcloud.common.entity.MyResult;
+import com.sea.springcloud.common.web.entity.MyResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +13,7 @@ public class UserController {
 
     @GetMapping("/test")
     public MyResult<String> test(){
+
         return MyResult.ok("success");
     }
 }

@@ -1,4 +1,4 @@
-package com.sea.springcloud.common.entity;
+package com.sea.springcloud.common.web.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +16,6 @@ public class MyResult<T> {
     }
 
     public static MyResult<String> error(String msg) {
-        return new MyResult(1, msg);
+        return new MyResult<>(1, msg);
     }
 }
