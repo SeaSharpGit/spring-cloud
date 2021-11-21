@@ -5,13 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
- * #短信
- * sms:
- * enable: true
- * endpoint: dysmsapi.aliyuncs.com
- * sign-name: xxx
- * access-key-id: xxx
- * access-key-secret: xxx
+ * 短信
  */
 @Data
 @ConfigurationProperties(prefix = "sms")
