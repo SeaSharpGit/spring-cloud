@@ -2,7 +2,6 @@ package com.sea.springcloud.gateway.common;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.nacos.api.NacosFactory;
 import com.alibaba.nacos.api.config.ConfigService;
@@ -10,34 +9,38 @@ import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
 import io.netty.util.internal.StringUtil;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
+import org.springframework.cloud.gateway.route.InMemoryRouteDefinitionRepository;
 import org.springframework.cloud.gateway.route.RouteDefinition;
-import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
-import org.springframework.cloud.gateway.route.RouteDefinitionWriter;
+import org.springframework.cloud.gateway.route.RouteDefinitionRepository;
+import org.springframework.cloud.gateway.support.NotFoundException;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.annotation.Nonnull;
 import javax.annotation.PostConstruct;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executor;
 
+/**
+ * 动态路由
+ * 替换 spring cloud gateway 默认实现：{@link InMemoryRouteDefinitionRepository}
+ */
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class DynamicRoute implements ApplicationEventPublisherAware {
+public class DynamicRouteDefinitionRepository implements RouteDefinitionRepository, ApplicationEventPublisherAware {
     private static final String dataId = "gateway-router";
     private static final String group = "DEFAULT_GROUP";
-    private static final List<String> ROUTE_LIST = new ArrayList<>();
+    private static final Map<String, RouteDefinition> routes = new HashMap<>();
     private final NacosDiscoveryProperties nacosDiscoveryProperties;
-    private final RouteDefinitionWriter routeDefinitionWriter;
+    @Setter
     private ApplicationEventPublisher applicationEventPublisher;
 
     @PostConstruct
@@ -55,21 +58,21 @@ public class DynamicRoute implements ApplicationEventPublisherAware {
         String configInfo = configService.getConfig(dataId, group, 5000);
         JSON.parseObject(configInfo, new TypeReference<List<RouteDefinition>>() {
         }).forEach(this::addRoute);
-        publish();
+        refresh();
     }
 
     private void addDynamicRouteListener(ConfigService configService) throws NacosException {
         configService.addListener(dataId, group, new Listener() {
             @Override
             public void receiveConfigInfo(String configInfo) {
-                clearRoute();
+                routes.clear();
                 if (StringUtil.isNullOrEmpty(configInfo)) {
                     return;
                 }
                 try {
                     JSON.parseObject(configInfo, new TypeReference<List<RouteDefinition>>() {
                     }).forEach(a -> addRoute(a));
-                    publish();
+                    refresh();
                 } catch (Exception e) {
                     log.error("receiveConfigInfo error：" + e.getLocalizedMessage());
                 }
@@ -82,29 +85,27 @@ public class DynamicRoute implements ApplicationEventPublisherAware {
         });
     }
 
-    private void clearRoute() {
-        for (String id : ROUTE_LIST) {
-            this.routeDefinitionWriter.delete(Mono.just(id)).subscribe();
-        }
-        ROUTE_LIST.clear();
-    }
-
     private void addRoute(RouteDefinition definition) {
-        try {
-            routeDefinitionWriter.save(Mono.just(definition)).subscribe();
-            ROUTE_LIST.add(definition.getId());
-        } catch (Exception e) {
-            log.error("addRoute error：" + e.getLocalizedMessage());
-        }
+        routes.put(definition.getId(), definition);
     }
 
-    private void publish() {
-        this.applicationEventPublisher.publishEvent(new RefreshRoutesEvent(this.routeDefinitionWriter));
+    private void refresh() {
+        this.applicationEventPublisher.publishEvent(new RefreshRoutesEvent(this));
     }
 
     @Override
-    public void setApplicationEventPublisher(@Nonnull ApplicationEventPublisher applicationEventPublisher) {
-        this.applicationEventPublisher = applicationEventPublisher;
+    public Flux<RouteDefinition> getRouteDefinitions() {
+        return Flux.fromIterable(routes.values());
+    }
+
+    @Override
+    public Mono<Void> save(Mono<RouteDefinition> route) {
+        return Mono.defer(() -> Mono.error(new NotFoundException("Unsupported operation")));
+    }
+
+    @Override
+    public Mono<Void> delete(Mono<String> routeId) {
+        return Mono.defer(() -> Mono.error(new NotFoundException("Unsupported operation")));
     }
 
 }
