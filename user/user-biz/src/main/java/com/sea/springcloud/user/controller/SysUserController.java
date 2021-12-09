@@ -16,9 +16,15 @@ public class SysUserController {
     private final SysUserService sysUserService;
 
     @GetMapping("/test")
-    public MyResult<String> test() {
-//        throw new RuntimeException("测试一下错误");
+    public MyResult<SysUser> test() {
         SysUser sysUser = sysUserService.getById(1);
-        return MyResult.ok("success");
+        return MyResult.ok(sysUser);
     }
+
+    @GetMapping("/error")
+    public void error() {
+        throw new RuntimeException("测试一下错误");
+    }
+
+
 }

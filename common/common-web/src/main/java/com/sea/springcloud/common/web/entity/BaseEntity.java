@@ -32,4 +32,22 @@ public class BaseEntity {
      */
     private LocalDateTime updateTime;
 
+    public void resetCreate(int userId){
+        LocalDateTime now=LocalDateTime.now();
+        this.setCreateTime(now);
+        this.setUpdateTime(now);
+        this.setCreateUserId(userId);
+        this.setUpdateUserId(userId);
+    }
+
+    public void resetUpdate(int userId){
+        this.setUpdateTime(LocalDateTime.now());
+        this.setUpdateUserId(userId);
+    }
+
+    public void resetDelete(int userId){
+        this.setDelFlag(true);
+        resetUpdate(userId);
+    }
+
 }

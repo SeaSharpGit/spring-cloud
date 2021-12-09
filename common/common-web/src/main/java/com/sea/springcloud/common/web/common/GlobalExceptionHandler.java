@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Throwable.class)
     public MyResult<String> handlerThrowable(Throwable e, HttpServletRequest request) {
         String url = request.getRequestURL().toString();
-        log.error(url + "：" + e.getLocalizedMessage());
+        log.error("全局异常：",e);
         return MyResult.error(e.getLocalizedMessage());
     }
 
