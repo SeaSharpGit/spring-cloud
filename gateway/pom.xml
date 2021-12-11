@@ -10,11 +10,6 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>gateway</artifactId>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
-
     <dependencies>
         <!-- spring cloud gateway -->
         <dependency>
@@ -40,7 +35,6 @@
     </dependencies>
 
     <build>
-        <finalName>gateway</finalName>
         <plugins>
             <!-- 解决jar包无法运行问题：no main manifest attribute -->
             <plugin>
