@@ -100,7 +100,7 @@
             <!-- 编译期执行 -->
             <scope>provided</scope>
         </dependency>
-        <!-- spring cloud bootstrap -->
+        <!-- spring cloud bootstrap ，引入后可以使用 bootstrap.yml 读取 nacos 配置中心 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
