@@ -79,12 +79,17 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
             <!-- mybatis plus -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-plus.version}</version>
+            </dependency>
+            <!-- 阿里云短信服务SDK -->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>dysmsapi20170525</artifactId>
+                <version>${alibaba-sms-version}</version>
             </dependency>
 
 
