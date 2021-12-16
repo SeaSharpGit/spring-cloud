@@ -54,6 +54,11 @@
             <groupId>com.sea</groupId>
             <artifactId>common-web</artifactId>
         </dependency>
+        <!-- common sms -->
+        <dependency>
+            <groupId>com.sea</groupId>
+            <artifactId>common-sms</artifactId>
+        </dependency>
         <!-- user api -->
         <dependency>
             <groupId>com.sea</groupId>

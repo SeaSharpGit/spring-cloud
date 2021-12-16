@@ -1,5 +1,6 @@
 package com.sea.springcloud.user.controller;
 
+import com.sea.springcloud.common.sms.util.SmsUtils;
 import com.sea.springcloud.common.web.entity.MyResult;
 import com.sea.springcloud.user.entity.SysUser;
 import com.sea.springcloud.user.service.SysUserService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SysUserController {
 
     private final SysUserService sysUserService;
+    private final SmsUtils smsUtils;
 
     @GetMapping("/test")
     public MyResult<SysUser> test() {
@@ -24,6 +26,17 @@ public class SysUserController {
     @GetMapping("/error")
     public void error() {
         throw new RuntimeException("测试一下错误");
+    }
+
+    @GetMapping("/sms")
+    public void sms() {
+        try {
+            smsUtils.sendMsg("18912387311","SMS_223587757",
+                    "username","admin",
+                    "password","123456");
+        }catch (Exception ex){
+            throw new RuntimeException(ex);
+        }
     }
 
 
