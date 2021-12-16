@@ -2,12 +2,14 @@ package com.sea.springcloud.common.sms.entity;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 /**
  * 短信
  */
 @Data
 @ConfigurationProperties(prefix = "sms")
+@RefreshScope
 public class SmsProperties {
 
     /**
