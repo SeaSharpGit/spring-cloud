@@ -20,10 +20,11 @@
         <spring-boot.version>2.4.4</spring-boot.version>
         <spring-cloud.version>2020.0.2</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
-        <fastjson.version>1.2.78</fastjson.version>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
         <druid.version>1.1.22</druid.version>
         <mysql-connector.version>8.0.23</mysql-connector.version>
+        <common-version>1.0.0-SNAPSHOT</common-version>
+        <alibaba-sms-version>2.0.8</alibaba-sms-version>
     </properties>
 
     <dependencyManagement>
@@ -78,23 +79,33 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+
+            <!-- mybatis plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+
+
             <!-- common web -->
             <dependency>
                 <groupId>com.sea</groupId>
                 <artifactId>common-web</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>${common-version}</version>
             </dependency>
             <!-- common 短信 -->
             <dependency>
                 <groupId>com.sea</groupId>
                 <artifactId>common-sms</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>${common-version}</version>
             </dependency>
             <!-- user api -->
             <dependency>
                 <groupId>com.sea</groupId>
                 <artifactId>user-api</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>${common-version}</version>
             </dependency>
 
         </dependencies>

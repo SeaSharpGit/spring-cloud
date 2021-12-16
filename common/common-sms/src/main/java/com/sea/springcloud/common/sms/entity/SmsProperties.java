@@ -2,7 +2,6 @@ package com.sea.springcloud.common.sms.entity;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
  * 短信

@@ -1,12 +1,13 @@
 package com.sea.springcloud.gateway.common;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
 import com.alibaba.nacos.api.NacosFactory;
 import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.util.internal.StringUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -39,7 +40,10 @@ public class DynamicRouteDefinitionRepository implements RouteDefinitionReposito
     private static final String dataId = "gateway-router";
     private static final String group = "DEFAULT_GROUP";
     private static final Map<String, RouteDefinition> routes = new HashMap<>();
+
     private final NacosDiscoveryProperties nacosDiscoveryProperties;
+    private final ObjectMapper objectMapper;
+
     @Setter
     private ApplicationEventPublisher applicationEventPublisher;
 
@@ -49,15 +53,18 @@ public class DynamicRouteDefinitionRepository implements RouteDefinitionReposito
             ConfigService configService = NacosFactory.createConfigService(nacosDiscoveryProperties.getServerAddr());
             initDynamicRoute(configService);
             addDynamicRouteListener(configService);
-        } catch (NacosException e) {
+        } catch (Exception e) {
             log.error("dynamicRouteByNacosListener error：" + e.getLocalizedMessage());
         }
     }
 
-    private void initDynamicRoute(ConfigService configService) throws NacosException {
+    private void initDynamicRoute(ConfigService configService) throws NacosException, JsonProcessingException {
         String configInfo = configService.getConfig(dataId, group, 5000);
-        JSON.parseObject(configInfo, new TypeReference<List<RouteDefinition>>() {
-        }).forEach(this::addRoute);
+        List<RouteDefinition> routeDefinitions= objectMapper.readValue(configInfo, new TypeReference<List<RouteDefinition>>() {
+        });
+        for (RouteDefinition item : routeDefinitions) {
+            addRoute(item);
+        }
         refresh();
     }
 
@@ -70,8 +77,11 @@ public class DynamicRouteDefinitionRepository implements RouteDefinitionReposito
                     return;
                 }
                 try {
-                    JSON.parseObject(configInfo, new TypeReference<List<RouteDefinition>>() {
-                    }).forEach(a -> addRoute(a));
+                    List<RouteDefinition> routeDefinitions= objectMapper.readValue(configInfo, new TypeReference<List<RouteDefinition>>() {
+                    });
+                    for (RouteDefinition item : routeDefinitions) {
+                        addRoute(item);
+                    }
                     refresh();
                 } catch (Exception e) {
                     log.error("receiveConfigInfo error：" + e.getLocalizedMessage());

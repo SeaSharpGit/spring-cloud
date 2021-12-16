@@ -1,9 +1,10 @@
 package com.sea.springcloud.common.sms.util;
 
-import com.alibaba.fastjson.JSON;
+
 import com.aliyun.dysmsapi20170525.models.SendSmsRequest;
 import com.aliyun.dysmsapi20170525.models.SendSmsResponse;
 import com.aliyun.teaopenapi.models.Config;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sea.springcloud.common.sms.entity.SmsProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import java.util.Map;
 public class SmsUtils {
 
     private final SmsProperties smsProperties;
+    private final ObjectMapper objectMapper;
 
     public void sendMsg(String phone, String aLiYunSmsTemplateCode, String... parameters) throws Exception {
         Map<String, String> map = new HashMap<>();
@@ -33,7 +35,7 @@ public class SmsUtils {
     }
 
     private void sendMsg(String phone, String aLiYunSmsTemplateCode, Map<String, String> map) throws Exception {
-        sendMsg(phone, aLiYunSmsTemplateCode, JSON.toJSONString(map));
+        sendMsg(phone, aLiYunSmsTemplateCode, objectMapper.writeValueAsString(map));
     }
 
     private void sendMsg(String phone, String aLiYunSmsTemplateCode, String params) throws Exception {
