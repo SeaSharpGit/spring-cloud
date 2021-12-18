@@ -16,6 +16,7 @@
     </modules>
 
     <properties>
+        <project.version>1.0.0-SNAPSHOT</project.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <spring-boot.version>2.4.4</spring-boot.version>
@@ -24,8 +25,7 @@
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
         <druid.version>1.1.22</druid.version>
         <mysql-connector.version>8.0.23</mysql-connector.version>
-        <common-version>1.0.0-SNAPSHOT</common-version>
-        <alibaba-sms-version>2.0.8</alibaba-sms-version>
+        <alibaba-sms.version>2.0.8</alibaba-sms.version>
     </properties>
 
     <dependencyManagement>
@@ -90,7 +90,7 @@
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>dysmsapi20170525</artifactId>
-                <version>${alibaba-sms-version}</version>
+                <version>${alibaba-sms.version}</version>
             </dependency>
 
 
@@ -99,19 +99,19 @@
             <dependency>
                 <groupId>com.sea</groupId>
                 <artifactId>common-web</artifactId>
-                <version>${common-version}</version>
+                <version>${project.version}</version>
             </dependency>
             <!-- common 短信 -->
             <dependency>
                 <groupId>com.sea</groupId>
                 <artifactId>common-sms</artifactId>
-                <version>${common-version}</version>
+                <version>${project.version}</version>
             </dependency>
             <!-- user api -->
             <dependency>
                 <groupId>com.sea</groupId>
                 <artifactId>user-api</artifactId>
-                <version>${common-version}</version>
+                <version>${project.version}</version>
             </dependency>
 
         </dependencies>
