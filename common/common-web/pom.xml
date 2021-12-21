@@ -33,6 +33,7 @@
         <dependency>
             <groupId>com.sea</groupId>
             <artifactId>common-core</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 

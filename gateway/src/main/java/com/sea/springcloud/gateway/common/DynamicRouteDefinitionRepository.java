@@ -1,6 +1,6 @@
 package com.sea.springcloud.gateway.common;
 
-import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
+import com.alibaba.cloud.nacos.NacosConfigProperties;
 import com.alibaba.nacos.api.NacosFactory;
 import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.listener.Listener;
@@ -41,7 +41,7 @@ public class DynamicRouteDefinitionRepository implements RouteDefinitionReposito
     private static final String group = "DEFAULT_GROUP";
     private static final Map<String, RouteDefinition> routes = new HashMap<>();
 
-    private final NacosDiscoveryProperties nacosDiscoveryProperties;
+    private final NacosConfigProperties nacosConfigProperties;
     private final ObjectMapper objectMapper;
 
     @Setter
@@ -50,7 +50,7 @@ public class DynamicRouteDefinitionRepository implements RouteDefinitionReposito
     @PostConstruct
     public void dynamicRouteByNacosListener() {
         try {
-            ConfigService configService = NacosFactory.createConfigService(nacosDiscoveryProperties.getServerAddr());
+            ConfigService configService = NacosFactory.createConfigService(nacosConfigProperties.getServerAddr());
             initDynamicRoute(configService);
             addDynamicRouteListener(configService);
         } catch (Exception e) {
@@ -60,7 +60,7 @@ public class DynamicRouteDefinitionRepository implements RouteDefinitionReposito
 
     private void initDynamicRoute(ConfigService configService) throws NacosException, JsonProcessingException {
         String configInfo = configService.getConfig(dataId, group, 5000);
-        List<RouteDefinition> routeDefinitions= objectMapper.readValue(configInfo, new TypeReference<List<RouteDefinition>>() {
+        List<RouteDefinition> routeDefinitions = objectMapper.readValue(configInfo, new TypeReference<List<RouteDefinition>>() {
         });
         for (RouteDefinition item : routeDefinitions) {
             addRoute(item);
@@ -77,7 +77,7 @@ public class DynamicRouteDefinitionRepository implements RouteDefinitionReposito
                     return;
                 }
                 try {
-                    List<RouteDefinition> routeDefinitions= objectMapper.readValue(configInfo, new TypeReference<List<RouteDefinition>>() {
+                    List<RouteDefinition> routeDefinitions = objectMapper.readValue(configInfo, new TypeReference<List<RouteDefinition>>() {
                     });
                     for (RouteDefinition item : routeDefinitions) {
                         addRoute(item);

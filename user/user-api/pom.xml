@@ -11,12 +11,6 @@
     <artifactId>user-api</artifactId>
 
     <dependencies>
-        <!-- common web -->
-        <dependency>
-            <groupId>com.sea</groupId>
-            <artifactId>common-web</artifactId>
-            <optional>true</optional>
-        </dependency>
         <!-- mybatis plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -28,10 +22,17 @@
             <groupId>com.sea</groupId>
             <artifactId>common-core</artifactId>
         </dependency>
+        <!-- common web -->
+        <dependency>
+            <groupId>com.sea</groupId>
+            <artifactId>common-web</artifactId>
+            <optional>true</optional>
+        </dependency>
         <!-- openfeign -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 </project>
