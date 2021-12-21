@@ -2,7 +2,7 @@ package com.sea.springcloud.user.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.sea.springcloud.common.web.entity.BaseEntity;
+import com.sea.springcloud.common.core.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,7 +19,7 @@ public class SysUser extends BaseEntity {
     /**
      * 用户名
      */
-    private String username;
+    private String userName;
 
     /**
      * 密码
@@ -30,5 +30,10 @@ public class SysUser extends BaseEntity {
      * 姓名
      */
     private String name;
+
+    /**
+     * 可用标识
+     */
+    private Boolean enabled;
 
 }

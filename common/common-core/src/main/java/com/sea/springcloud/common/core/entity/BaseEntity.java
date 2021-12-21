@@ -1,4 +1,4 @@
-package com.sea.springcloud.common.web.entity;
+package com.sea.springcloud.common.core.entity;
 
 import lombok.Data;
 

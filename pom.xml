@@ -94,7 +94,12 @@
             </dependency>
 
 
-
+            <!-- common web -->
+            <dependency>
+                <groupId>com.sea</groupId>
+                <artifactId>common-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <!-- common web -->
             <dependency>
                 <groupId>com.sea</groupId>

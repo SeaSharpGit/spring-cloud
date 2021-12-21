@@ -29,6 +29,11 @@
             <artifactId>spring-web</artifactId>
             <optional>true</optional>
         </dependency>
+        <!-- common core -->
+        <dependency>
+            <groupId>com.sea</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

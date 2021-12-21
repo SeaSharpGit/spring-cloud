@@ -1,11 +1,13 @@
 package com.sea.springcloud.user.controller;
 
+import com.sea.springcloud.common.core.vo.LoginUser;
+import com.sea.springcloud.common.core.vo.MyResult;
 import com.sea.springcloud.common.sms.util.SmsUtils;
-import com.sea.springcloud.common.web.entity.MyResult;
 import com.sea.springcloud.user.entity.SysUser;
 import com.sea.springcloud.user.service.SysUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,6 +39,11 @@ public class SysUserController {
         }catch (Exception ex){
             throw new RuntimeException(ex);
         }
+    }
+
+    @GetMapping("/user/getLoginUserByUserName/{userName}")
+    public MyResult<LoginUser> getLoginUserByUserName(@PathVariable("userName") String userName){
+        return MyResult.ok(sysUserService.getLoginUserByUserName(userName));
     }
 
 

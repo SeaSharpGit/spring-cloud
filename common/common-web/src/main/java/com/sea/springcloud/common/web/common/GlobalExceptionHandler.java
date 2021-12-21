@@ -1,6 +1,6 @@
 package com.sea.springcloud.common.web.common;
 
-import com.sea.springcloud.common.web.entity.MyResult;
+import com.sea.springcloud.common.core.vo.MyResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
