@@ -12,8 +12,8 @@ import java.util.Optional;
 @Service
 public class SysUserService extends CommonServiceImpl<SysUserMapper, SysUser> {
 
-    public LoginUser getLoginUserByUserName(String userName) {
-        Optional<SysUser> optional= this.list(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getName,userName)
+    public LoginUser getLoginUserByUsername(String username) {
+        Optional<SysUser> optional= this.list(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUsername,username)
                 .eq(SysUser::getDelFlag,false)).stream().findFirst();
         if(!optional.isPresent()){
             throw  new IllegalArgumentException("用户名错误");
@@ -21,7 +21,7 @@ public class SysUserService extends CommonServiceImpl<SysUserMapper, SysUser> {
         SysUser user=optional.get();
         LoginUser result=new LoginUser();
         result.setId(user.getId());
-        result.setUsername(user.getUserName());
+        result.setUsername(user.getUsername());
         result.setPassword(user.getPassword());
         result.setEnabled(user.getEnabled());
 

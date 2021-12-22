@@ -15,7 +15,7 @@ public class LoginUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return feignUserService.getLoginUserByUserName(username).getData();
+        return feignUserService.getLoginUserByUsername(username).getData();
     }
 
 }

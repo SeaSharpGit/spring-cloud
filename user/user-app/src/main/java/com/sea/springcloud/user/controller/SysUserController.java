@@ -41,9 +41,9 @@ public class SysUserController {
         }
     }
 
-    @GetMapping("/user/getLoginUserByUserName/{userName}")
-    public MyResult<LoginUser> getLoginUserByUserName(@PathVariable("userName") String userName){
-        return MyResult.ok(sysUserService.getLoginUserByUserName(userName));
+    @GetMapping("/getLoginUserByUsername/{username}")
+    public MyResult<LoginUser> getLoginUserByUsername(@PathVariable("username") String username){
+        return MyResult.ok(sysUserService.getLoginUserByUsername(username));
     }
 
 
