@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
