@@ -18,6 +18,7 @@
             <artifactId>spring-security-core</artifactId>
             <optional>true</optional>
         </dependency>
+        <!-- openfeign -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-openfeign-core</artifactId>

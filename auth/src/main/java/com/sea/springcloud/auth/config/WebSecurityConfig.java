@@ -1,8 +1,10 @@
 package com.sea.springcloud.auth.config;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -12,11 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests();
-        //http.formLogin(Customizer.withDefaults());
+        http.authorizeRequests().anyRequest().authenticated();
     }
 
     /**
@@ -28,6 +28,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder(){
         //使用默认密码编码器
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Bean
+    @Override
+    @SneakyThrows
+    public AuthenticationManager authenticationManager(){
+//        return super.authenticationManagerBean();
+        return super.authenticationManager();
     }
 
 }
