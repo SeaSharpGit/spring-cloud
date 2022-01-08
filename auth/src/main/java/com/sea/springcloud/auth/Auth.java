@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @EnableAllFeignClients
-public class AuthApp {
+public class Auth {
     public static void main(String[] args) {
-        SpringApplication.run(AuthApp.class, args);
+        SpringApplication.run(Auth.class, args);
     }
 
 }

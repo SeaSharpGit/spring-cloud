@@ -7,10 +7,9 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = FeignServiceConstants.USER)
+@FeignClient(contextId = "feignSysUserService",name = FeignServiceConstants.USER)
 public interface FeignSysUserService {
-
-    @GetMapping("/user/loadUserByUsername/{username}")
+    @GetMapping("/sysUser/loadUserByUsername/{username}")
     MyResult<OAuthUserDetails> loadUserByUsername(@PathVariable("username") String username);
 
 }

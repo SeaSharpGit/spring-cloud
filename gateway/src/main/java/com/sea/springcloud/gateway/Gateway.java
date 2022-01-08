@@ -1,11 +1,11 @@
-package com.sea.springcloud.user;
+package com.sea.springcloud.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserApp {
+public class Gateway {
     public static void main(String[] args) {
-        SpringApplication.run(UserApp.class, args);
+        SpringApplication.run(Gateway.class, args);
     }
 }

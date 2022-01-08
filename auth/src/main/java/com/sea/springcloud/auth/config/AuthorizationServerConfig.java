@@ -5,6 +5,7 @@ import lombok.SneakyThrows;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -19,6 +20,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
     private final ClientDetailsService clientDetailsService;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     @SneakyThrows
@@ -29,12 +31,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     @SneakyThrows
     public void configure(ClientDetailsServiceConfigurer clients) {
-        clients.withClientDetails(clientDetailsService);
-//        clients.inMemory()
-//                .withClient("admin")
-//                .secret(passwordEncoder.encode("admin"))
-//                .authorizedGrantTypes("password")
-//                .scopes("all");
+//        clients.withClientDetails(clientDetailsService);
+        clients.inMemory()
+                .withClient("admin")
+                .secret(passwordEncoder.encode("123456"))
+                .authorizedGrantTypes("password")
+                .scopes("all");
     }
 
     @Override
