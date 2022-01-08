@@ -1,4 +1,4 @@
-package com.sea.springcloud.user.vo;
+package com.sea.springcloud.auth.entity;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

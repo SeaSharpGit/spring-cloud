@@ -1,5 +1,7 @@
 package com.sea.springcloud.auth.service;
 
+import com.sea.springcloud.auth.entity.OAuthUserDetails;
+import com.sea.springcloud.user.entity.SysUser;
 import com.sea.springcloud.user.feign.FeignSysUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +16,13 @@ public class OAuthUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return feignSysUserService.loadUserByUsername(username).getData();
+        SysUser sysUser=feignSysUserService.loadUserByUsername(username).getData();
+        OAuthUserDetails result=new OAuthUserDetails();
+        result.setId(sysUser.getId());
+        result.setUsername(sysUser.getUsername());
+        result.setPassword(sysUser.getPassword());
+        result.setEnabled(sysUser.getEnabled());
+        return result;
     }
 
 }

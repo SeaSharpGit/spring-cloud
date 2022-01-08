@@ -4,7 +4,6 @@ import com.sea.springcloud.common.core.vo.MyResult;
 import com.sea.springcloud.common.sms.util.SmsUtils;
 import com.sea.springcloud.user.entity.SysUser;
 import com.sea.springcloud.user.service.SysUserService;
-import com.sea.springcloud.user.vo.OAuthUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +41,7 @@ public class SysUserController {
     }
 
     @GetMapping("/loadUserByUsername/{username}")
-    public MyResult<OAuthUserDetails> loadUserByUsername(@PathVariable("username") String username){
+    public MyResult<SysUser> loadUserByUsername(@PathVariable("username") String username){
         return MyResult.ok(sysUserService.loadUserByUsername(username));
     }
 
