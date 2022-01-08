@@ -35,17 +35,5 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <optional>true</optional>
         </dependency>
-        <!-- spring security core-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.security</groupId>-->
-<!--            <artifactId>spring-security-core</artifactId>-->
-<!--            <optional>true</optional>-->
-<!--        </dependency>-->
-<!--        &lt;!&ndash; spring security oauth &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.security.oauth</groupId>-->
-<!--            <artifactId>spring-security-oauth2</artifactId>-->
-<!--            <optional>true</optional>-->
-<!--        </dependency>-->
     </dependencies>
 </project>
