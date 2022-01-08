@@ -1,4 +1,4 @@
-package com.sea.springcloud.common.core.vo;
+package com.sea.springcloud.user.vo;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,9 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 @Data
-public class LoginUser implements UserDetails {
+public class OAuthUserDetails implements UserDetails {
 
-    private int id;
+    private Integer id;
 
     private String username;
 

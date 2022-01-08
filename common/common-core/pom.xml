@@ -12,12 +12,6 @@
     <artifactId>common-core</artifactId>
 
     <dependencies>
-        <!-- spring security core-->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <optional>true</optional>
-        </dependency>
         <!-- openfeign -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

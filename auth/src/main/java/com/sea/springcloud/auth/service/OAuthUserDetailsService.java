@@ -1,6 +1,6 @@
 package com.sea.springcloud.auth.service;
 
-import com.sea.springcloud.user.feign.FeignUserService;
+import com.sea.springcloud.user.feign.FeignSysUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,13 +9,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class LoginUserDetailsService implements UserDetailsService {
-
-    private final FeignUserService feignUserService;
+public class OAuthUserDetailsService implements UserDetailsService {
+    private final FeignSysUserService feignSysUserService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return feignUserService.getLoginUserByUsername(username).getData();
+        return feignSysUserService.loadUserByUsername(username).getData();
     }
 
 }

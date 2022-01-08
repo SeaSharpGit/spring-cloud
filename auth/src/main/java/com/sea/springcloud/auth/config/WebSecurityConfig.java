@@ -34,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     @SneakyThrows
     public AuthenticationManager authenticationManager(){
+        //TODO：这里会死循环，后期研究一下是什么问题
 //        return super.authenticationManagerBean();
         return super.authenticationManager();
     }

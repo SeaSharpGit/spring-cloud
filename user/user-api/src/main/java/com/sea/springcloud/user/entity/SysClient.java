@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SysUser extends Model<SysUser> {
+public class SysClient extends Model<SysClient> {
     /**
      * 主键
      */
@@ -18,24 +18,34 @@ public class SysUser extends Model<SysUser> {
     private Integer id;
 
     /**
-     * 用户名
+     * 客户端
      */
-    private String username;
+    private String client;
 
     /**
      * 密码
      */
-    private String password;
+    private String secret;
 
     /**
-     * 姓名
+     * 授权类型
      */
-    private String name;
+    private String grantType;
 
     /**
-     * 可用标识
+     * 范围
      */
-    private Boolean enabled;
+    private String scope;
+
+    /**
+     * AccessToken过期时间（单位：秒）
+     */
+    private Integer accessExpire;
+
+    /**
+     * RefreshToken过期时间（单位：秒）
+     */
+    private Integer refreshExpire;
 
     /**
      * 删除标识
@@ -61,6 +71,7 @@ public class SysUser extends Model<SysUser> {
      * 修改时间
      */
     private LocalDateTime updateTime;
+
 
 
 }

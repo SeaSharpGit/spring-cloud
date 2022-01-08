@@ -1,30 +1,25 @@
 package com.sea.springcloud.user.service;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.sea.springcloud.common.core.vo.LoginUser;
 import com.sea.springcloud.common.web.common.CommonServiceImpl;
 import com.sea.springcloud.user.entity.SysUser;
 import com.sea.springcloud.user.mapper.SysUserMapper;
+import com.sea.springcloud.user.vo.OAuthUserDetails;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class SysUserService extends CommonServiceImpl<SysUserMapper, SysUser> {
-
-    public LoginUser getLoginUserByUsername(String username) {
-        Optional<SysUser> optional= this.list(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUsername,username)
-                .eq(SysUser::getDelFlag,false)).stream().findFirst();
-        if(!optional.isPresent()){
+    public OAuthUserDetails loadUserByUsername(String username) {
+        SysUser sysUser= this.list(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUsername,username)
+                .eq(SysUser::getDeleteFlag,false)).stream().findFirst().orElse(null);
+        if(sysUser==null){
             throw  new IllegalArgumentException("用户名错误");
         }
-        SysUser user=optional.get();
-        LoginUser result=new LoginUser();
-        result.setId(user.getId());
-        result.setUsername(user.getUsername());
-        result.setPassword(user.getPassword());
-        result.setEnabled(user.getEnabled());
-
+        OAuthUserDetails result=new OAuthUserDetails();
+        result.setId(sysUser.getId());
+        result.setUsername(sysUser.getUsername());
+        result.setPassword(sysUser.getPassword());
+        result.setEnabled(sysUser.getEnabled());
         return result;
     }
 }

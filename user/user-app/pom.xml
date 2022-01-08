@@ -56,6 +56,12 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
+        <!-- spring security oauth -->
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <optional>true</optional>
+        </dependency>
 
 
 
@@ -73,6 +79,10 @@
         <dependency>
             <groupId>com.sea</groupId>
             <artifactId>user-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sea</groupId>
+            <artifactId>common-core</artifactId>
         </dependency>
     </dependencies>
 
