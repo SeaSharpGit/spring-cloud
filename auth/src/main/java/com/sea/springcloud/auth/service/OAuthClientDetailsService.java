@@ -4,6 +4,7 @@ import com.sea.springcloud.auth.entity.OAuthClientDetails;
 import com.sea.springcloud.user.entity.SysClient;
 import com.sea.springcloud.user.feign.FeignSysClientService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
@@ -24,11 +25,10 @@ public class OAuthClientDetailsService implements ClientDetailsService {
             result.getAuthorizedGrantTypes().add(grantType);
         }
         for (String scope : sysClient.getScope().split(",")) {
-            result.getAuthorizedGrantTypes().add(scope);
+            result.getScope().add(scope);
         }
         result.setAccessTokenValiditySeconds(sysClient.getAccessExpire());
         result.setRefreshTokenValiditySeconds(sysClient.getRefreshExpire());
-        result.setClientSecret(sysClient.getSecret());
         return result;
     }
 }

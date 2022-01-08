@@ -4,10 +4,7 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.provider.ClientDetails;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Data
 public class OAuthClientDetails implements ClientDetails {
@@ -33,27 +30,27 @@ public class OAuthClientDetails implements ClientDetails {
 
     @Override
     public Set<String> getResourceIds() {
-        return null;
+        return new HashSet<>();
     }
 
     @Override
     public Set<String> getRegisteredRedirectUri() {
-        return null;
+        return new HashSet<>();
     }
 
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
-        return null;
+        return new HashSet<>();
     }
 
     @Override
     public boolean isAutoApprove(String s) {
-        return false;
+        return true;
     }
 
     @Override
     public Map<String, Object> getAdditionalInformation() {
-        return null;
+        return new HashMap<>();
     }
 
 }
