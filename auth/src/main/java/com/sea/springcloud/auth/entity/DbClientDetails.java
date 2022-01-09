@@ -7,7 +7,7 @@ import org.springframework.security.oauth2.provider.ClientDetails;
 import java.util.*;
 
 @Data
-public class OAuthClientDetails implements ClientDetails {
+public class DbClientDetails implements ClientDetails {
 
     private String clientId;
 

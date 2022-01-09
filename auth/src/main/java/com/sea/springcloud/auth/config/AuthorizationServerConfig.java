@@ -1,6 +1,6 @@
 package com.sea.springcloud.auth.config;
 
-import com.sea.springcloud.auth.service.OAuthClientDetailsService;
+import com.sea.springcloud.auth.service.DbClientDetailsService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 @Configuration
 @EnableAuthorizationServer
@@ -18,31 +19,28 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
-    private final OAuthClientDetailsService oAuthClientDetailsService;
+    private final DbClientDetailsService dbClientDetailsService;
+    private final RedisTokenStore redisTokenStore;
 
     @Override
     @SneakyThrows
     public void configure(AuthorizationServerSecurityConfigurer security) {
-//        security.allowFormAuthenticationForClients();
+        security.tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated()");
     }
 
     @Override
     @SneakyThrows
     public void configure(ClientDetailsServiceConfigurer clients) {
-        clients.withClientDetails(oAuthClientDetailsService);
+        clients.withClientDetails(dbClientDetailsService);
     }
 
     @Override
     @SneakyThrows
     public void configure(AuthorizationServerEndpointsConfigurer endpoints)  {
         endpoints.authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService);
-//                .tokenStore(tokenStore());
+                .userDetailsService(userDetailsService)
+                .tokenStore(redisTokenStore);
     }
-
-//    @Bean
-//    public TokenStore tokenStore() {
-//        return new InMemoryTokenStore();
-//    }
 
 }

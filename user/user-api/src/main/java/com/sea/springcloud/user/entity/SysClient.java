@@ -33,7 +33,7 @@ public class SysClient extends Model<SysClient> {
     private String grantType;
 
     /**
-     * 范围
+     * 域
      */
     private String scope;
 

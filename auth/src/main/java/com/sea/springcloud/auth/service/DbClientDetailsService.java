@@ -1,10 +1,9 @@
 package com.sea.springcloud.auth.service;
 
-import com.sea.springcloud.auth.entity.OAuthClientDetails;
+import com.sea.springcloud.auth.entity.DbClientDetails;
 import com.sea.springcloud.user.entity.SysClient;
 import com.sea.springcloud.user.feign.FeignSysClientService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
@@ -12,13 +11,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class OAuthClientDetailsService implements ClientDetailsService {
+public class DbClientDetailsService implements ClientDetailsService {
     private final FeignSysClientService feignSysClientService;
 
     @Override
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
         SysClient sysClient = feignSysClientService.loadClientByClientId(clientId).getData();
-        OAuthClientDetails result = new OAuthClientDetails();
+        DbClientDetails result = new DbClientDetails();
         result.setClientId(sysClient.getClient());
         result.setClientSecret(sysClient.getSecret());
         for (String grantType : sysClient.getGrantType().split(",")) {

@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 @Data
-public class OAuthUserDetails implements UserDetails {
+public class DbUserDetails implements UserDetails {
 
     private Integer id;
 
