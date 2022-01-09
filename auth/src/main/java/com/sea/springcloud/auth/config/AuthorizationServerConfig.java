@@ -3,7 +3,6 @@ package com.sea.springcloud.auth.config;
 import com.sea.springcloud.auth.service.OAuthClientDetailsService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,8 +11,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 @Configuration
 @EnableAuthorizationServer
@@ -39,13 +36,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @SneakyThrows
     public void configure(AuthorizationServerEndpointsConfigurer endpoints)  {
         endpoints.authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService)
-                .tokenStore(tokenStore());
+                .userDetailsService(userDetailsService);
+//                .tokenStore(tokenStore());
     }
 
-    @Bean
-    public TokenStore tokenStore() {
-        return new InMemoryTokenStore();
-    }
+//    @Bean
+//    public TokenStore tokenStore() {
+//        return new InMemoryTokenStore();
+//    }
 
 }
