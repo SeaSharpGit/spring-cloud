@@ -1,4 +1,4 @@
-package com.sea.springcloud.gateway.common;
+package com.sea.springcloud.gateway.route;
 
 import com.alibaba.cloud.nacos.NacosConfigProperties;
 import com.alibaba.nacos.api.NacosFactory;

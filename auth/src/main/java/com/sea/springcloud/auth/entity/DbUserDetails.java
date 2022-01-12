@@ -8,7 +8,6 @@ import java.util.Collection;
 
 @Data
 public class DbUserDetails implements UserDetails {
-
     private Integer id;
 
     private String username;

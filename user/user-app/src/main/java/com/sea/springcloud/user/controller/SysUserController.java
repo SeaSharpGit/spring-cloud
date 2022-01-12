@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/sysUser")
 public class SysUserController {
-
     private final SysUserService sysUserService;
     private final SmsUtils smsUtils;
 
