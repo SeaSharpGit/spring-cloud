@@ -18,7 +18,7 @@ public class SysUser extends Model<SysUser> {
     private Integer id;
 
     /**
-     * 用户名
+     * 账号
      */
     private String username;
 
@@ -28,7 +28,7 @@ public class SysUser extends Model<SysUser> {
     private String password;
 
     /**
-     * 姓名
+     * 名称
      */
     private String name;
 

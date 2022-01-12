@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysClientService extends CommonServiceImpl<SysClientMapper, SysClient> {
     public SysClient loadClientByClientId(String clientId) {
-        SysClient sysClient = this.list(Wrappers.<SysClient>lambdaQuery().eq(SysClient::getClient, clientId)
+        SysClient sysClient = this.list(Wrappers.<SysClient>lambdaQuery().eq(SysClient::getClientId, clientId)
                 .eq(SysClient::getDeleteFlag, false)).stream().findFirst().orElse(null);
         if (sysClient == null) {
             throw new IllegalArgumentException("客户端错误");

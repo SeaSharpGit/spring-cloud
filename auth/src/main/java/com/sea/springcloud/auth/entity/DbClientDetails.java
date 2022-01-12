@@ -1,5 +1,6 @@
 package com.sea.springcloud.auth.entity;
 
+import com.alibaba.cloud.commons.lang.StringUtils;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -21,7 +22,11 @@ public class DbClientDetails implements ClientDetails {
 
     private Integer refreshTokenValiditySeconds;
 
-    private boolean isSecretRequired = true;
+
+    @Override
+    public boolean isSecretRequired(){
+        return StringUtils.isNotEmpty(clientSecret);
+    }
 
     @Override
     public boolean isScoped() {

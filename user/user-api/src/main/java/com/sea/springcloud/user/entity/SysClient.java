@@ -18,19 +18,19 @@ public class SysClient extends Model<SysClient> {
     private Integer id;
 
     /**
-     * 客户端
+     * 客户端账号
      */
-    private String client;
+    private String clientId;
 
     /**
-     * 密码
+     * 客户端密码
      */
-    private String secret;
+    private String clientSecret;
 
     /**
      * 授权类型
      */
-    private String grantType;
+    private String authorizedGrantTypes;
 
     /**
      * 域
@@ -38,14 +38,14 @@ public class SysClient extends Model<SysClient> {
     private String scope;
 
     /**
-     * AccessToken过期时间（单位：秒）
+     * AccessToken过期时间
      */
-    private Integer accessExpire;
+    private Integer accessTokenValiditySeconds;
 
     /**
-     * RefreshToken过期时间（单位：秒）
+     * RefreshToken过期时间
      */
-    private Integer refreshExpire;
+    private Integer refreshTokenValiditySeconds;
 
     /**
      * 删除标识
