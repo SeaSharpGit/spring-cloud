@@ -4,6 +4,7 @@ import com.sea.springcloud.auth.entity.DbClientDetails;
 import com.sea.springcloud.user.entity.SysClient;
 import com.sea.springcloud.user.feign.FeignSysClientService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.ClientRegistrationException;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Primary
 public class DbClientDetailsService implements ClientDetailsService {
     private final FeignSysClientService feignSysClientService;
 
