@@ -26,7 +26,7 @@
         <druid.version>1.1.22</druid.version>
         <mysql-connector.version>8.0.23</mysql-connector.version>
         <alibaba-sms.version>2.0.8</alibaba-sms.version>
-        <spring-security-oauth.version>2.3.6.RELEASE</spring-security-oauth.version>
+        <spring-security-oauth.version>2.2.5.RELEASE</spring-security-oauth.version>
     </properties>
 
     <dependencyManagement>
@@ -113,10 +113,11 @@
             </dependency>
             <!-- spring security oauth -->
             <dependency>
-                <groupId>org.springframework.security.oauth</groupId>
-                <artifactId>spring-security-oauth2</artifactId>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-oauth2</artifactId>
                 <version>${spring-security-oauth.version}</version>
             </dependency>
+
 
 
             <!-- common web -->
