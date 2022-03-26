@@ -11,7 +11,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 @RefreshScope
 @ConfigurationProperties(prefix = "swagger")
 public class SwaggerProperties {
-    private Boolean enable = false;
+    private Boolean enable;
     private String host;
     private String title;
     private String description;

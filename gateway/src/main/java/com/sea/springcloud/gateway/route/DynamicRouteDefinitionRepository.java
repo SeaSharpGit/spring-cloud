@@ -37,7 +37,7 @@ import java.util.concurrent.Executor;
 @Slf4j
 @RequiredArgsConstructor
 public class DynamicRouteDefinitionRepository implements RouteDefinitionRepository, ApplicationEventPublisherAware {
-    private static final String dataId = "gateway-router";
+    private static final String dataId = "gateway-router.yml";
     private static final String group = "DEFAULT_GROUP";
     private static final Map<String, RouteDefinition> routes = new HashMap<>();
 

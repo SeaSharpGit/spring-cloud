@@ -4,6 +4,7 @@ import com.sea.springcloud.common.core.vo.MyResult;
 import com.sea.springcloud.common.sms.util.SmsUtils;
 import com.sea.springcloud.user.entity.SysUser;
 import com.sea.springcloud.user.service.SysUserService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/sysUser")
+@Api(value = "test",tags = "测试")
 public class SysUserController {
     private final SysUserService sysUserService;
     private final SmsUtils smsUtils;
