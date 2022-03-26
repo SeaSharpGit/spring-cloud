@@ -1,4 +1,4 @@
-package com.sea.springcloud.common.web.common;
+package com.sea.springcloud.common.web.handler;
 
 import com.sea.springcloud.common.core.vo.MyResult;
 import lombok.RequiredArgsConstructor;

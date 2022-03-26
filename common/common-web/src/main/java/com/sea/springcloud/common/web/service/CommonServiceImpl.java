@@ -1,4 +1,4 @@
-package com.sea.springcloud.common.web.common;
+package com.sea.springcloud.common.web.service;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

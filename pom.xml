@@ -27,6 +27,9 @@
         <mysql-connector.version>8.0.23</mysql-connector.version>
         <alibaba-sms.version>2.0.8</alibaba-sms.version>
         <spring-security-oauth.version>2.2.5.RELEASE</spring-security-oauth.version>
+<!--        <swagger.version>2.0.2.RELEASE</swagger.version>-->
+        <swagger.version>3.0.0</swagger.version>
+
     </properties>
 
     <dependencyManagement>
@@ -117,10 +120,22 @@
                 <artifactId>spring-cloud-starter-oauth2</artifactId>
                 <version>${spring-security-oauth.version}</version>
             </dependency>
+            <!-- swagger -->
+<!--            <dependency>-->
+<!--                <groupId>com.spring4all</groupId>-->
+<!--                <artifactId>swagger-spring-boot-starter</artifactId>-->
+<!--                <version>${swagger.version}</version>-->
+<!--            </dependency>-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
 
 
 
-            <!-- common web -->
+
+            <!-- common core -->
             <dependency>
                 <groupId>com.sea</groupId>
                 <artifactId>common-core</artifactId>
@@ -132,10 +147,16 @@
                 <artifactId>common-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!-- common 短信 -->
+            <!-- common sms -->
             <dependency>
                 <groupId>com.sea</groupId>
                 <artifactId>common-sms</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- common swagger -->
+            <dependency>
+                <groupId>com.sea</groupId>
+                <artifactId>common-swagger</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <!-- user api -->
@@ -160,6 +181,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
         </dependency>
 
     </dependencies>
