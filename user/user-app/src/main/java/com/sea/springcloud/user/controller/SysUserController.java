@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/sysUser")
-@Api(value = "test",tags = "测试")
+@RequestMapping("/user")
+@Api(value = "用户管理",tags = "用户管理")
 public class SysUserController {
     private final SysUserService sysUserService;
     private final SmsUtils smsUtils;

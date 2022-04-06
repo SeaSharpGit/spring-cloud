@@ -19,25 +19,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @EnableOpenApi
-@ConditionalOnProperty(name = "swagger.enable")
+@ConditionalOnProperty(name = "swagger.enabled")
 @EnableConfigurationProperties(SwaggerProperties.class)
 @RequiredArgsConstructor
 public class SwaggerConfig {
     private final SwaggerProperties swaggerProperties;
 
     @Bean
-    public Docket createRestApi(){
-        List<RequestParameter> headers=new ArrayList<>();
-        ApiSelectorBuilder builder=new Docket(DocumentationType.OAS_30)
+    public Docket createRestApi() {
+        List<RequestParameter> headers = new ArrayList<>();
+        ApiSelectorBuilder builder = new Docket(DocumentationType.OAS_30)
                 .host(swaggerProperties.getHost())
                 .apiInfo(apiInfo())
                 .globalRequestParameters(headers)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sea.springcloud"));
+                .apis(RequestHandlerSelectors.basePackage(swaggerProperties.getBasePackage()));
         return builder.build();
     }
 
-    private ApiInfo apiInfo(){
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title(swaggerProperties.getTitle())
                 .description(swaggerProperties.getDescription())
@@ -46,9 +46,9 @@ public class SwaggerConfig {
                 .licenseUrl(swaggerProperties.getLicenseUrl())
                 .termsOfServiceUrl(swaggerProperties.getTermsOfServiceUrl())
                 .contact(new Contact(
-                        swaggerProperties.getContactName(),
-                        swaggerProperties.getContactUrl(),
-                        swaggerProperties.getContactEmail()
+                        swaggerProperties.getContact().getName(),
+                        swaggerProperties.getContact().getUrl(),
+                        swaggerProperties.getContact().getEmail()
                 )).build();
     }
 
