@@ -1,6 +1,7 @@
 package com.sea.springcloud.user.controller;
 
 import com.sea.springcloud.common.core.vo.MyResult;
+import com.sea.springcloud.common.security.annotation.NoAuth;
 import com.sea.springcloud.common.sms.util.SmsUtils;
 import com.sea.springcloud.user.entity.SysUser;
 import com.sea.springcloud.user.service.SysUserService;
@@ -20,6 +21,7 @@ public class SysUserController {
     private final SmsUtils smsUtils;
 
     @GetMapping("/test")
+    @NoAuth
     public MyResult<SysUser> test() {
         SysUser sysUser = sysUserService.getById(1);
         return MyResult.ok(sysUser);

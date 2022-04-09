@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(contextId = "feignSysClientService",name = FeignServiceConstants.USER)
 public interface FeignSysClientService {
-    @GetMapping("/sysClient/loadClientByClientId/{clientId}")
+    @GetMapping("/client/loadClientByClientId/{clientId}")
     MyResult<SysClient> loadClientByClientId(@PathVariable("clientId") String clientId);
 
 }

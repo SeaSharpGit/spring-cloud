@@ -165,6 +165,12 @@
                 <artifactId>user-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <!-- common security -->
+            <dependency>
+                <groupId>com.sea</groupId>
+                <artifactId>common-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>

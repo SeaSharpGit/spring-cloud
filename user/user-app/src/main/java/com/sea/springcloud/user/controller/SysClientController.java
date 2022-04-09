@@ -11,14 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/sysClient")
+@RequestMapping("/client")
 public class SysClientController {
     private final SysClientService sysClientService;
 
-    @GetMapping("/loadClientByClientId/{clientId}")
-    public MyResult<SysClient> loadClientByClientId(@PathVariable("clientId") String clientId){
-        return MyResult.ok(sysClientService.loadClientByClientId(clientId));
+    @GetMapping("/loadClientById/{id}")
+    public MyResult<SysClient> loadClientByClientId(@PathVariable("id") String id){
+        return MyResult.ok(sysClientService.loadClientByClientId(id));
     }
-
 
 }

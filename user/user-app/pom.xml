@@ -78,6 +78,12 @@
             <groupId>com.sea</groupId>
             <artifactId>common-swagger</artifactId>
         </dependency>
+        <!-- common security -->
+        <dependency>
+            <groupId>com.sea</groupId>
+            <artifactId>common-security</artifactId>
+        </dependency>
+        
     </dependencies>
 
     <build>
