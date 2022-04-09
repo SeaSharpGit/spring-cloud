@@ -23,19 +23,17 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        for (Map.Entry<String, Set<String>> entry : noAuthConfig.getIgnoreUrls().entrySet()) {
+            for (String httpMethod : entry.getValue()) {
+                http.authorizeRequests().antMatchers(HttpMethod.valueOf(httpMethod), entry.getKey()).permitAll();
+            }
+        }
         http.authorizeRequests()
                 .anyRequest()
                 .authenticated()  //任何请求都需要身份认证
                 .and()
                 .csrf()
                 .disable();    //禁用CSRF
-
-        for (Map.Entry<String, Set<String>> entry : noAuthConfig.getIgnoreUrls().entrySet()) {
-            for (String httpMethod : entry.getValue()) {
-                http.authorizeRequests().antMatchers(HttpMethod.valueOf(httpMethod), entry.getKey()).permitAll();
-            }
-        }
-
     }
 
 }

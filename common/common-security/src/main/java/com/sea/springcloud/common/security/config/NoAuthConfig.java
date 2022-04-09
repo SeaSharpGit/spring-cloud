@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class NoAuthConfig implements InitializingBean {
-
     private final WebApplicationContext applicationContext;
 
     @Getter
@@ -27,7 +26,6 @@ public class NoAuthConfig implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
-        int a = 1;
         Map<RequestMappingInfo, HandlerMethod> requestMap = applicationContext.getBean(RequestMappingHandlerMapping.class).getHandlerMethods();
         for (Map.Entry<RequestMappingInfo, HandlerMethod> entry : requestMap.entrySet()) {
             if ((entry.getValue().getBeanType().isAnnotationPresent(NoAuth.class)
