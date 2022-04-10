@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,7 +23,17 @@ public class NoAuthConfig implements InitializingBean {
     private final WebApplicationContext applicationContext;
 
     @Getter
-    private final Map<String, Set<String>> ignoreUrls = new HashMap<>();
+    private final Map<String, Set<String>> paths = new HashMap<String, Set<String>>() {{
+        put("/v3/**", new HashSet<String>() {{
+            add("GET");
+        }});
+        put("/swagger-ui/**", new HashSet<String>() {{
+            add("GET");
+        }});
+        put("/swagger-resources/**", new HashSet<String>() {{
+            add("GET");
+        }});
+    }};
 
     @Override
     public void afterPropertiesSet() {
@@ -31,14 +42,12 @@ public class NoAuthConfig implements InitializingBean {
             if ((entry.getValue().getBeanType().isAnnotationPresent(NoAuth.class)
                     || entry.getValue().getMethod().isAnnotationPresent(NoAuth.class))
                     && entry.getKey().getPatternsCondition() != null) {
-                entry.getKey().getPatternsCondition().getPatterns().forEach(url -> filterPath(url, entry.getKey()));
+                Set<String> methods = entry.getKey().getMethodsCondition().getMethods().stream().map(RequestMethod::name).collect(Collectors.toSet());
+                for (String pattern : entry.getKey().getPatternsCondition().getPatterns()) {
+                    paths.put(pattern, methods);
+                }
             }
         }
-    }
-
-    private void filterPath(String url, RequestMappingInfo info) {
-        Set<String> methods = info.getMethodsCondition().getMethods().stream().map(RequestMethod::name).collect(Collectors.toSet());
-        ignoreUrls.put(url, methods);
     }
 
 

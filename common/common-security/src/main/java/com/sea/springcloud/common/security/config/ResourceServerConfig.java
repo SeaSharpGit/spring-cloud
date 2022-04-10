@@ -23,7 +23,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        for (Map.Entry<String, Set<String>> entry : noAuthConfig.getIgnoreUrls().entrySet()) {
+        for (Map.Entry<String, Set<String>> entry : noAuthConfig.getPaths().entrySet()) {
             for (String httpMethod : entry.getValue()) {
                 http.authorizeRequests().antMatchers(HttpMethod.valueOf(httpMethod), entry.getKey()).permitAll();
             }
