@@ -20,7 +20,6 @@ public class GatewaySwaggerConfig {
         return RouterFunctions
                 .route(RequestPredicates.GET("/swagger-resources").and(RequestPredicates.accept(MediaType.ALL)), swaggerResourcesHandler)
                 .andRoute(RequestPredicates.GET("/swagger-resources/configuration/ui").and(RequestPredicates.accept(MediaType.ALL)), swaggerResourcesUiHandler);
-
     }
 
 }
