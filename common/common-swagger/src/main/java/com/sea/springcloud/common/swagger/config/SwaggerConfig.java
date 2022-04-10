@@ -29,22 +29,17 @@ public class SwaggerConfig {
     public Docket createRestApi() {
         List<RequestParameter> headers = new ArrayList<>();
         ApiSelectorBuilder builder = new Docket(DocumentationType.OAS_30)
-                .host(swaggerProperties.getHost())
                 .apiInfo(apiInfo())
                 .globalRequestParameters(headers)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage(swaggerProperties.getBasePackage()));
+                .apis(RequestHandlerSelectors.basePackage("com.sea.springcloud"));
         return builder.build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title(swaggerProperties.getTitle())
-                .description(swaggerProperties.getDescription())
                 .version(swaggerProperties.getVersion())
-                .license(swaggerProperties.getLicense())
-                .licenseUrl(swaggerProperties.getLicenseUrl())
-                .termsOfServiceUrl(swaggerProperties.getTermsOfServiceUrl())
                 .contact(new Contact(
                         swaggerProperties.getContact().getName(),
                         swaggerProperties.getContact().getUrl(),
