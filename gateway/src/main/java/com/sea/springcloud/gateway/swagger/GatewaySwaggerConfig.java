@@ -12,14 +12,16 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 @Configuration
 @RequiredArgsConstructor
 public class GatewaySwaggerConfig {
-    private final SwaggerResourcesHandler swaggerResourcesHandler;
-    private final SwaggerResourcesUiHandler swaggerResourcesUiHandler;
+    private final SwaggerHandler swaggerHandler;
+    private final SwaggerUiHandler swaggerUiHandler;
+    private final SwaggerSecurityHandler swaggerSecurityHandler;
 
     @Bean
     public RouterFunction<ServerResponse> swaggerRouterFunction() {
         return RouterFunctions
-                .route(RequestPredicates.GET("/swagger-resources").and(RequestPredicates.accept(MediaType.ALL)), swaggerResourcesHandler)
-                .andRoute(RequestPredicates.GET("/swagger-resources/configuration/ui").and(RequestPredicates.accept(MediaType.ALL)), swaggerResourcesUiHandler);
+                .route(RequestPredicates.GET("/swagger-resources").and(RequestPredicates.accept(MediaType.ALL)), swaggerHandler)
+                .andRoute(RequestPredicates.GET("/swagger-resources/configuration/ui").and(RequestPredicates.accept(MediaType.ALL)), swaggerUiHandler)
+                .andRoute(RequestPredicates.GET("/swagger-resources/configuration/security").and(RequestPredicates.accept(MediaType.ALL)), swaggerSecurityHandler);
     }
 
 }

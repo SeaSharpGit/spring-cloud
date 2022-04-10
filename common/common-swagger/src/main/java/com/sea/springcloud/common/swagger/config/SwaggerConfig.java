@@ -6,12 +6,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
-import springfox.documentation.spring.web.plugins.ApiSelectorBuilder;
 import springfox.documentation.spring.web.plugins.Docket;
 
 import java.util.ArrayList;
@@ -29,14 +29,15 @@ public class SwaggerConfig {
     @Bean
     public Docket createRestApi() {
         List<RequestParameter> headers = new ArrayList<>();
-        ApiSelectorBuilder builder = new Docket(DocumentationType.OAS_30)
+        return new Docket(DocumentationType.OAS_30)
                 .apiInfo(apiInfo())
                 .globalRequestParameters(headers)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sea.springcloud"));
-        return builder.build()
+                .apis(RequestHandlerSelectors.basePackage("com.sea.springcloud"))
+                .paths(PathSelectors.any())
+                .build()
                 .securitySchemes(Collections.singletonList(securitySchema()))
-                .securityContexts(Collections.singletonList(securityContext())).pathMapping("/");
+                .securityContexts(Collections.singletonList(securityContext()));
     }
 
     private ApiInfo apiInfo() {

@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 
 @Component
 @RequiredArgsConstructor
-public class SwaggerResourcesHandler implements HandlerFunction<ServerResponse> {
+public class SwaggerHandler implements HandlerFunction<ServerResponse> {
     private final SwaggerResourcesProvider swaggerResourcesProvider;
 
     @Override

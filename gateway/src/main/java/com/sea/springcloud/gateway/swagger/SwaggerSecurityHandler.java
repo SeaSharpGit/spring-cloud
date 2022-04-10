@@ -8,17 +8,17 @@ import org.springframework.web.reactive.function.server.HandlerFunction;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
-import springfox.documentation.swagger.web.UiConfigurationBuilder;
+import springfox.documentation.swagger.web.SecurityConfigurationBuilder;
 
 import javax.annotation.Nonnull;
 
 @Component
-public class SwaggerResourcesUiHandler implements HandlerFunction<ServerResponse> {
+public class SwaggerSecurityHandler implements HandlerFunction<ServerResponse> {
     @Override
     @Nonnull
     public Mono<ServerResponse> handle(@Nonnull ServerRequest serverRequest) {
         return ServerResponse.status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(UiConfigurationBuilder.builder().build()));
+                .body(BodyInserters.fromValue(SecurityConfigurationBuilder.builder().build()));
     }
 }
