@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/test")
-public class SysUserController {
+public class TestController {
 
     @GetMapping("/test")
     public MyResult<String> test() {
