@@ -33,6 +33,9 @@ public class NoAuthConfig implements InitializingBean {
         put("/swagger-resources/**", new HashSet<String>() {{
             add("GET");
         }});
+//        put("/webjars/**", new HashSet<String>() {{
+//            add("GET");
+//        }});
     }};
 
     @Override

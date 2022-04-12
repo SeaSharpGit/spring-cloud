@@ -36,7 +36,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.sea.springcloud"))
                 .paths(PathSelectors.any())
                 .build()
-                .securitySchemes(Collections.singletonList(securitySchema()))
+                .securitySchemes(Collections.singletonList(securityScheme()))
                 .securityContexts(Collections.singletonList(securityContext()));
     }
 
@@ -51,14 +51,19 @@ public class SwaggerConfig {
                 )).build();
     }
 
-    private OAuth securitySchema() {
-        String name = swaggerProperties.getAuthorization().getName();
-        List<AuthorizationScope> authorizationScopes = swaggerProperties.getAuthorization().getScopes().stream()
-                .map(a -> new AuthorizationScope(a.getName(), a.getDescription()))
-                .collect(Collectors.toList());
-        GrantType grantType = new ResourceOwnerPasswordCredentialsGrant(swaggerProperties.getAuthorization().getTokenUrl());
-        return new OAuth(name, authorizationScopes, Collections.singletonList(grantType));
+    private SecurityScheme securityScheme() {
+        return new ApiKey("Authorization", "OAuth2", "header");
     }
+
+//    private SecurityScheme securityScheme() {
+//        String name = swaggerProperties.getAuthorization().getName();
+////        List<AuthorizationScope> authorizationScopes = swaggerProperties.getAuthorization().getScopes().stream()
+////                .map(a -> new AuthorizationScope(a.getName(), a.getDescription()))
+////                .collect(Collectors.toList());
+////        GrantType grantType = new ResourceOwnerPasswordCredentialsGrant(swaggerProperties.getAuthorization().getTokenUrl());
+////        return new OAuth(name, authorizationScopes, Collections.singletonList(grantType));
+//        return new ApiKey("Authorization", "OAuth2", "header");
+//    }
 
     /**
      * 全局鉴权策略
@@ -68,11 +73,11 @@ public class SwaggerConfig {
                 .map(a -> new AuthorizationScope(a.getName(), a.getDescription()))
                 .collect(Collectors.toList());
         AuthorizationScope[] scopes = authorizationScopes.toArray(new AuthorizationScope[authorizationScopes.size() - 1]);
-        SecurityReference securityReference = SecurityReference.builder()
-                .reference(swaggerProperties.getAuthorization().getName())
-                .scopes(scopes)
-                .build();
-        return SecurityContext.builder().securityReferences(Collections.singletonList(securityReference)).build();
+        String name = swaggerProperties.getAuthorization().getName();
+        List<SecurityReference> securityReferences = new ArrayList<SecurityReference>() {{
+            add(new SecurityReference("Authorization", scopes));
+        }};
+        return SecurityContext.builder().securityReferences(securityReferences).build();
     }
 
 }
