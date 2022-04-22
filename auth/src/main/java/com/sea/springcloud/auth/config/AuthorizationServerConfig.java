@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 @Configuration
@@ -23,6 +24,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private final UserDetailsService userDetailsService;
     private final ClientDetailsService clientDetailsService;
     private final RedisConnectionFactory redisConnectionFactory;
+    private final TokenEnhancer tokenEnhancer;
 
     @Override
     @SneakyThrows
@@ -39,14 +41,23 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     @SneakyThrows
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints)  {
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+//        endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST).tokenStore(redisTokenStore)
+//                .tokenEnhancer(tokenEnhancer).userDetailsService(guiyunUserDetailsService)
+//                .authorizationCodeServices(authorizationCodeServices).authenticationManager(authenticationManagerBean)
+//                .reuseRefreshTokens(false).pathMapping("/oauth/confirm_access", "/token/confirm_access")
+//                .exceptionTranslator(new GuiyunWebResponseExceptionTranslator());
+
+
         endpoints.authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService)
-                .tokenStore(redisTokenStore());
+                .tokenStore(redisTokenStore())
+                .tokenEnhancer(tokenEnhancer)
+                .userDetailsService(userDetailsService);
     }
 
     @Bean
-    public RedisTokenStore redisTokenStore(){
+    public RedisTokenStore redisTokenStore() {
+        //        redisTokenStore.setPrefix("oauth2");
         return new RedisTokenStore(redisConnectionFactory);
     }
 

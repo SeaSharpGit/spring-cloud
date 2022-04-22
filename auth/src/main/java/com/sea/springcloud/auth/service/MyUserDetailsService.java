@@ -1,6 +1,6 @@
 package com.sea.springcloud.auth.service;
 
-import com.sea.springcloud.auth.entity.DbUserDetails;
+import com.sea.springcloud.auth.entity.MyUserDetails;
 import com.sea.springcloud.user.entity.SysUser;
 import com.sea.springcloud.user.feign.FeignSysUserService;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +15,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @RequiredArgsConstructor
-public class DbUserDetailsService implements UserDetailsService {
+public class MyUserDetailsService implements UserDetailsService {
     private final FeignSysUserService feignSysUserService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         SysUser sysUser=feignSysUserService.loadUserByUsername(username).getData();
-        DbUserDetails result=new DbUserDetails();
+        MyUserDetails result=new MyUserDetails();
         result.setId(sysUser.getId());
         result.setUsername(sysUser.getUsername());
         result.setPassword(sysUser.getPassword());

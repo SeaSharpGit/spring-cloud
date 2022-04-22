@@ -67,6 +67,11 @@
             <groupId>com.sea</groupId>
             <artifactId>common-core</artifactId>
         </dependency>
+        <!-- common security -->
+        <dependency>
+            <groupId>com.sea</groupId>
+            <artifactId>common-security</artifactId>
+        </dependency>
 
 
     </dependencies>

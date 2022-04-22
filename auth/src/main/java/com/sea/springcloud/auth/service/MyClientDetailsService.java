@@ -1,6 +1,6 @@
 package com.sea.springcloud.auth.service;
 
-import com.sea.springcloud.auth.entity.DbClientDetails;
+import com.sea.springcloud.auth.entity.MyClientDetails;
 import com.sea.springcloud.user.entity.SysClient;
 import com.sea.springcloud.user.feign.FeignSysClientService;
 import lombok.RequiredArgsConstructor;
@@ -17,13 +17,13 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Primary
-public class DbClientDetailsService implements ClientDetailsService {
+public class MyClientDetailsService implements ClientDetailsService {
     private final FeignSysClientService feignSysClientService;
 
     @Override
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
         SysClient sysClient = feignSysClientService.loadClientByClientId(clientId).getData();
-        DbClientDetails result = new DbClientDetails();
+        MyClientDetails result = new MyClientDetails();
         result.setClientId(sysClient.getClientId());
         result.setClientSecret(sysClient.getClientSecret());
         for (String grantType : sysClient.getAuthorizedGrantTypes().split(",")) {

@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 @Data
-public class DbUserDetails implements UserDetails {
+public class MyUserDetails implements UserDetails {
     private Integer id;
 
     private String username;
@@ -16,11 +16,11 @@ public class DbUserDetails implements UserDetails {
 
     private boolean enabled;
 
-    private boolean accountNonExpired=true;
+    private boolean accountNonExpired = true;
 
-    private boolean accountNonLocked=true;
+    private boolean accountNonLocked = true;
 
-    private boolean credentialsNonExpired=true;
+    private boolean credentialsNonExpired = true;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
