@@ -15,12 +15,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
 public class NoAuthConfig implements InitializingBean {
     private final WebApplicationContext applicationContext;
+    private static final Pattern PATTERN = Pattern.compile("\\{(.*?)}");
 
     @Getter
     private final Map<String, Set<String>> paths = new HashMap<String, Set<String>>() {{
@@ -47,7 +49,9 @@ public class NoAuthConfig implements InitializingBean {
                     && entry.getKey().getPatternsCondition() != null) {
                 Set<String> methods = entry.getKey().getMethodsCondition().getMethods().stream().map(RequestMethod::name).collect(Collectors.toSet());
                 for (String pattern : entry.getKey().getPatternsCondition().getPatterns()) {
-                    paths.put(pattern, methods);
+                    //解决url中存在/{id}的情况
+                    String url= PATTERN.matcher(pattern).replaceAll("*");
+                    paths.put(url, methods);
                 }
             }
         }

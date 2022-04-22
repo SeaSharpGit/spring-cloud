@@ -1,6 +1,7 @@
 package com.sea.springcloud.user.controller;
 
 import com.sea.springcloud.common.core.vo.MyResult;
+import com.sea.springcloud.common.security.annotation.NoAuth;
 import com.sea.springcloud.user.entity.SysClient;
 import com.sea.springcloud.user.service.SysClientService;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class SysClientController {
     private final SysClientService sysClientService;
 
-    @GetMapping("/loadClientById/{id}")
-    public MyResult<SysClient> loadClientByClientId(@PathVariable("id") String id){
+    @NoAuth
+    @GetMapping("/loadByClientId/{id}")
+    public MyResult<SysClient> loadByClientId(@PathVariable("id") String id){
         return MyResult.ok(sysClientService.loadClientByClientId(id));
     }
 

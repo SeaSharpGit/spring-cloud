@@ -20,8 +20,8 @@ public class SysUserController {
     private final SysUserService sysUserService;
     private final SmsUtils smsUtils;
 
-    @GetMapping("/test")
     @NoAuth
+    @GetMapping("/test")
     public MyResult<SysUser> test() {
         SysUser sysUser = sysUserService.getById(1);
         return MyResult.ok(sysUser);
@@ -43,6 +43,7 @@ public class SysUserController {
         }
     }
 
+    @NoAuth
     @GetMapping("/loadUserByUsername/{username}")
     public MyResult<SysUser> loadUserByUsername(@PathVariable("username") String username){
         return MyResult.ok(sysUserService.loadUserByUsername(username));

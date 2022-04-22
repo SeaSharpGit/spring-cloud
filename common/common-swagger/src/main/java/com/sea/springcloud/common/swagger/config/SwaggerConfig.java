@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class SwaggerConfig {
     private final SwaggerProperties swaggerProperties;
+    private final String OAUTH2_HEADER_KEY = "Authorization";
 
     @Bean
     public Docket createRestApi() {
@@ -51,19 +52,43 @@ public class SwaggerConfig {
                 )).build();
     }
 
-    private SecurityScheme securityScheme() {
-        return new ApiKey("Authorization", "OAuth2", "header");
-    }
-
 //    private SecurityScheme securityScheme() {
-//        String name = swaggerProperties.getAuthorization().getName();
-////        List<AuthorizationScope> authorizationScopes = swaggerProperties.getAuthorization().getScopes().stream()
-////                .map(a -> new AuthorizationScope(a.getName(), a.getDescription()))
-////                .collect(Collectors.toList());
-////        GrantType grantType = new ResourceOwnerPasswordCredentialsGrant(swaggerProperties.getAuthorization().getTokenUrl());
-////        return new OAuth(name, authorizationScopes, Collections.singletonList(grantType));
 //        return new ApiKey("Authorization", "OAuth2", "header");
 //    }
+
+    private SecurityScheme securityScheme() {
+        List<AuthorizationScope> scopes = swaggerProperties.getAuthorization().getScopes().stream()
+                .map(a -> new AuthorizationScope(a.getName(), a.getDescription()))
+                .collect(Collectors.toList());
+        return OAuth2Scheme.OAUTH2_PASSWORD_FLOW_BUILDER
+                .name(OAUTH2_HEADER_KEY)
+                .tokenUrl(swaggerProperties.getAuthorization().getTokenUrl())
+//                .authorizationUrl("https://www.baidu.com")
+                .scopes(scopes)
+                .refreshUrl("")
+                .build();
+//        OAuth2Scheme authorization = OAuth2Scheme.OAUTH2_AUTHORIZATION_CODE_FLOW_BUILDER
+//                .name("Authorization")
+//                .tokenUrl(properties.getAccessTokenUri())
+//                .authorizationUrl(properties.getAuthorizationUri())
+//                .scopes(Arrays.asList(scopes()))
+//                .refreshUrl(properties.getRefreshTokenUri())
+//                .build();
+//       OAuth2Scheme clientCredentials = OAuth2Scheme.OAUTH2_CLIENT_CREDENTIALS_FLOW_BUILDER
+//                .name("Authorization")
+//                .tokenUrl(properties.getAccessTokenUri())
+//                .authorizationUrl(properties.getAuthorizationUri())
+//                .scopes(Arrays.asList(scopes()))
+//                .refreshUrl(properties.getRefreshTokenUri())
+//                .build();
+//        OAuth2Scheme password = OAuth2Scheme.OAUTH2_PASSWORD_FLOW_BUILDER
+//                .name("Authorization")
+//                .tokenUrl(properties.getAccessTokenUri())
+//                .authorizationUrl(properties.getAuthorizationUri())
+//                .scopes(Arrays.asList(scopes()))
+//                .refreshUrl(properties.getRefreshTokenUri())
+//                .build();
+    }
 
     /**
      * 全局鉴权策略
@@ -73,9 +98,8 @@ public class SwaggerConfig {
                 .map(a -> new AuthorizationScope(a.getName(), a.getDescription()))
                 .collect(Collectors.toList());
         AuthorizationScope[] scopes = authorizationScopes.toArray(new AuthorizationScope[authorizationScopes.size() - 1]);
-        String name = swaggerProperties.getAuthorization().getName();
         List<SecurityReference> securityReferences = new ArrayList<SecurityReference>() {{
-            add(new SecurityReference("Authorization", scopes));
+            add(new SecurityReference(OAUTH2_HEADER_KEY, scopes));
         }};
         return SecurityContext.builder().securityReferences(securityReferences).build();
     }

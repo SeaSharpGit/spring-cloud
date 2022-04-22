@@ -67,11 +67,6 @@
             <groupId>com.sea</groupId>
             <artifactId>common-core</artifactId>
         </dependency>
-        <!-- common swagger -->
-        <dependency>
-            <groupId>com.sea</groupId>
-            <artifactId>common-swagger</artifactId>
-        </dependency>
 
 
     </dependencies>

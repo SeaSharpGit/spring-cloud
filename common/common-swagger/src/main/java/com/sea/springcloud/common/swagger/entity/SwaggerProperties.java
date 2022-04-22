@@ -60,15 +60,13 @@ public class SwaggerProperties {
     @Data
     public static class Authorization {
         /**
-         * 鉴权策略ID，需要和SecurityReferences ID保持一致
-         */
-        private String name = "";
-
-        /**
          * 作用域集合
          */
         private List<Scope> scopes = new ArrayList<>();
 
+        /**
+         * 获取token的地址
+         */
         private String tokenUrl = "";
     }
 
