@@ -14,6 +14,9 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
+/**
+ * 授权服务器
+ */
 @Configuration
 @EnableAuthorizationServer
 @RequiredArgsConstructor

@@ -28,8 +28,12 @@ public class MyResourceServerTokenServices implements ResourceServerTokenService
         return oAuth2Authentication;
     }
 
+    /**
+     * 用于授权服务器端，处理token验证
+     * 资源服务器不需要此方法
+     */
     @Override
     public OAuth2AccessToken readAccessToken(String s) {
-        return null;
+        throw new UnsupportedOperationException("MyResourceServerTokenServices.readAccessToken");
     }
 }
