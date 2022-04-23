@@ -2,9 +2,7 @@ package com.sea.springcloud.auth.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -23,8 +21,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
     private final ClientDetailsService clientDetailsService;
-    private final RedisConnectionFactory redisConnectionFactory;
     private final TokenEnhancer tokenEnhancer;
+    private final RedisTokenStore redisTokenStore;
 
     @Override
     @SneakyThrows
@@ -50,15 +48,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 
         endpoints.authenticationManager(authenticationManager)
-                .tokenStore(redisTokenStore())
+                .tokenStore(redisTokenStore)
                 .tokenEnhancer(tokenEnhancer)
                 .userDetailsService(userDetailsService);
     }
-
-    @Bean
-    public RedisTokenStore redisTokenStore() {
-        //        redisTokenStore.setPrefix("oauth2");
-        return new RedisTokenStore(redisConnectionFactory);
-    }
-
 }

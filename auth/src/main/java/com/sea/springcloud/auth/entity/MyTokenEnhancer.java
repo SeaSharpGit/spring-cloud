@@ -1,5 +1,6 @@
 package com.sea.springcloud.auth.entity;
 
+import com.sea.springcloud.common.security.entity.MyUserDetails;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 扩展token的返回值
+ * token返回值增强
  */
 @Component
 public class MyTokenEnhancer implements TokenEnhancer {

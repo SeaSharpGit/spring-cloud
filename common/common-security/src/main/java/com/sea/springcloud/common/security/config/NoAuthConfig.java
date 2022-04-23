@@ -47,7 +47,7 @@ public class NoAuthConfig implements InitializingBean {
                     && entry.getKey().getPatternsCondition() != null) {
                 Set<String> methods = entry.getKey().getMethodsCondition().getMethods().stream().map(RequestMethod::name).collect(Collectors.toSet());
                 for (String pattern : entry.getKey().getPatternsCondition().getPatterns()) {
-                    //解决url中存在/{id}的情况
+                    //处理url中存在/{id}的情况
                     String url = PATTERN.matcher(pattern).replaceAll("*");
                     paths.put(url, methods);
                 }

@@ -15,3 +15,10 @@ spring:
         file-extension: yml
         shared-configs: application.${spring.cloud.nacos.config.file-extension}
 
+security:
+  oauth2:
+    client:
+      client-id: admin
+      client-secret: 123456
+      scope: server
+

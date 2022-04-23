@@ -1,6 +1,6 @@
 package com.sea.springcloud.auth.service;
 
-import com.sea.springcloud.auth.entity.MyUserDetails;
+import com.sea.springcloud.common.security.entity.MyUserDetails;
 import com.sea.springcloud.user.entity.SysUser;
 import com.sea.springcloud.user.feign.FeignSysUserService;
 import lombok.RequiredArgsConstructor;
