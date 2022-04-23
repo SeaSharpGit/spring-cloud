@@ -10,11 +10,15 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 
 /**
  * 替换默认实现：{@link RemoteTokenServices}
+ * 实现了自主鉴权，不需要再访问授权服务器，直接从redis中获取数据
  */
 @RequiredArgsConstructor
 public class MyResourceServerTokenServices implements ResourceServerTokenServices {
     private final RedisTokenStore redisTokenStore;
 
+    /**
+     * 鉴权
+     */
     @SneakyThrows
     @Override
     public OAuth2Authentication loadAuthentication(String accessToken) {
