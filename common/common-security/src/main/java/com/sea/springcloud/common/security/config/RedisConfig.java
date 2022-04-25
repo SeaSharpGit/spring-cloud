@@ -13,7 +13,8 @@ public class RedisConfig {
 
     @Bean
     public RedisTokenStore redisTokenStore() {
-        //        redisTokenStore.setPrefix("oauth2");
-        return new RedisTokenStore(redisConnectionFactory);
+        RedisTokenStore redisTokenStore = new RedisTokenStore(redisConnectionFactory);
+        redisTokenStore.setPrefix("oauth2:");
+        return redisTokenStore;
     }
 }

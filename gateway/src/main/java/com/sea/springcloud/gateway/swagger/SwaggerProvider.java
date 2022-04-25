@@ -14,6 +14,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * 获取注册中心中的资源 /swagger-resources
+ */
 @Component
 @Primary
 @RequiredArgsConstructor
@@ -26,7 +29,7 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
         List<RouteDefinition> routeDefinitions = new ArrayList<>();
         routeDefinitionRepository.getRouteDefinitions().sort(Comparator.comparing(RouteDefinition::getOrder)).subscribe(routeDefinitions::add);
         return routeDefinitions.stream()
-                .flatMap(a -> a.getPredicates().stream().map(b -> swaggerResource(a.getId(), b.getArgs().get("pattern").replace("/**", "/v3/api-docs"))))
+                .flatMap(a -> a.getPredicates().stream().map(b -> swaggerResource(a.getId(), b.getArgs().get("pattern").replace("/**", "/v2/api-docs"))))
                 // 只显示已启动的服务
                 .filter(a -> discoveryClient.getServices().stream().anyMatch(b -> b.equals(a.getName())))
                 .collect(Collectors.toList());
@@ -36,7 +39,7 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
         SwaggerResource swaggerResource = new SwaggerResource();
         swaggerResource.setName(name);
         swaggerResource.setLocation(location);
-        swaggerResource.setSwaggerVersion("3.0");
+        swaggerResource.setSwaggerVersion("2.0");
         return swaggerResource;
     }
 

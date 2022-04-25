@@ -12,6 +12,9 @@ import springfox.documentation.swagger.web.UiConfigurationBuilder;
 
 import javax.annotation.Nonnull;
 
+/**
+ * 获取UI层配置 /swagger-resources/configuration/ui
+ */
 @Component
 public class SwaggerUiHandler implements HandlerFunction<ServerResponse> {
     @Override

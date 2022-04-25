@@ -24,7 +24,7 @@ public class NoAuthConfig implements InitializingBean {
     private static final Pattern PATTERN = Pattern.compile("\\{(.*?)}");
 
     private final Map<String, Set<String>> paths = new HashMap<String, Set<String>>() {{
-        put("/v3/**", new HashSet<String>() {{
+        put("/v2/**", new HashSet<String>() {{
             add("GET");
         }});
         put("/swagger-ui/**", new HashSet<String>() {{

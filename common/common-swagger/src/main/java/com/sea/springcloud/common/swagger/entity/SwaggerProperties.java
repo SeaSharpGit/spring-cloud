@@ -3,9 +3,11 @@ package com.sea.springcloud.common.swagger.entity;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import springfox.documentation.service.AuthorizationScope;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * swagger配置
@@ -25,9 +27,29 @@ public class SwaggerProperties {
     private String title = "";
 
     /**
+     * 描述
+     */
+    private String description = "";
+
+    /**
      * 版本号
      */
     private String version = "";
+
+    /**
+     * 许可证
+     */
+    private String license = "";
+
+    /**
+     * 许可证URL
+     */
+    private String licenseUrl = "";
+
+    /**
+     * 服务条款URL
+     */
+    private String termsOfServiceUrl = "";
 
     /**
      * 联系人
@@ -38,6 +60,15 @@ public class SwaggerProperties {
      * 鉴权
      */
     private Authorization authorization = new Authorization();
+
+    public List<AuthorizationScope> getScopes() {
+        if (authorization == null) {
+            return new ArrayList<>();
+        }
+        return authorization.getScopes().stream()
+                .map(a -> new AuthorizationScope(a.getName(), a.getDescription()))
+                .collect(Collectors.toList());
+    }
 
     @Data
     public static class Contact {

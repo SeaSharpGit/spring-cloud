@@ -13,6 +13,9 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 
 import javax.annotation.Nonnull;
 
+/**
+ * 获取注册中心中的资源 /swagger-resources
+ */
 @Component
 @RequiredArgsConstructor
 public class SwaggerHandler implements HandlerFunction<ServerResponse> {

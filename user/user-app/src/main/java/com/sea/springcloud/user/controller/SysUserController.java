@@ -1,6 +1,6 @@
 package com.sea.springcloud.user.controller;
 
-import com.sea.springcloud.common.core.vo.MyResult;
+import com.sea.springcloud.common.core.entity.R;
 import com.sea.springcloud.common.security.annotation.NoAuth;
 import com.sea.springcloud.common.sms.util.SmsUtils;
 import com.sea.springcloud.user.entity.SysUser;
@@ -22,9 +22,9 @@ public class SysUserController {
 
     @NoAuth
     @GetMapping("/test")
-    public MyResult<SysUser> test() {
+    public R<SysUser> test() {
         SysUser sysUser = sysUserService.getById(1);
-        return MyResult.ok(sysUser);
+        return R.ok(sysUser);
     }
 
     @GetMapping("/error")
@@ -45,8 +45,8 @@ public class SysUserController {
 
     @NoAuth
     @GetMapping("/loadUserByUsername/{username}")
-    public MyResult<SysUser> loadUserByUsername(@PathVariable("username") String username){
-        return MyResult.ok(sysUserService.loadUserByUsername(username));
+    public R<SysUser> loadUserByUsername(@PathVariable("username") String username){
+        return R.ok(sysUserService.loadUserByUsername(username));
     }
 
 

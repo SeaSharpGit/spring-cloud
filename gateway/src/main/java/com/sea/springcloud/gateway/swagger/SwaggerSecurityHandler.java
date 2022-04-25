@@ -12,6 +12,9 @@ import springfox.documentation.swagger.web.SecurityConfigurationBuilder;
 
 import javax.annotation.Nonnull;
 
+/**
+ * 获取安全配置
+ */
 @Component
 public class SwaggerSecurityHandler implements HandlerFunction<ServerResponse> {
     @Override
