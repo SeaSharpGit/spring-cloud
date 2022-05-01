@@ -33,6 +33,7 @@ public class SwaggerConfig {
 
     @Bean
     public Docket createRestApi() {
+        //灰度
         List<RequestParameter> headers = new ArrayList<RequestParameter>() {{
             add(new RequestParameterBuilder().description("灰度")
                     .in(ParameterType.HEADER)
