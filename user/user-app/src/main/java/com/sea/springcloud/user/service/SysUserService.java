@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysUserService extends CommonServiceImpl<SysUserMapper, SysUser> {
     public SysUser loadUserByUsername(String username) {
-        SysUser sysUser= this.list(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUsername,username)
+        SysUser sysUser= list(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUsername,username)
                 .eq(SysUser::getDeleteFlag,false)).stream().findFirst().orElse(null);
         if(sysUser==null){
             throw  new IllegalArgumentException("用户名错误");

@@ -14,11 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Throwable.class)
     public R<Object> handlerThrowable(Throwable e, HttpServletRequest request) {
-        String url = request.getRequestURL().toString();
+//        String url = request.getRequestURL().toString();
         log.error("全局异常：",e);
         return R.error(e.getLocalizedMessage());
     }

@@ -20,7 +20,6 @@ public class SysUserController {
     private final SysUserService sysUserService;
     private final SmsUtils smsUtils;
 
-    @NoAuth
     @GetMapping("/test")
     public R<SysUser> test() {
         SysUser sysUser = sysUserService.getById(1);
