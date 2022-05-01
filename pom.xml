@@ -27,10 +27,31 @@
         <mysql-connector.version>8.0.23</mysql-connector.version>
         <alibaba-sms.version>2.0.8</alibaba-sms.version>
         <spring-security-oauth.version>2.2.5.RELEASE</spring-security-oauth.version>
-<!--        <swagger.version>2.0.2.RELEASE</swagger.version>-->
+        <!--        <swagger.version>2.0.2.RELEASE</swagger.version>-->
         <swagger.version>3.0.0</swagger.version>
 
     </properties>
+
+    <dependencies>
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <!-- 编译期执行 -->
+            <scope>provided</scope>
+        </dependency>
+        <!-- spring cloud bootstrap ，引入后可以使用 bootstrap.yml 读取 nacos 配置中心 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <!-- spring boot actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -121,18 +142,16 @@
                 <version>${spring-security-oauth.version}</version>
             </dependency>
             <!-- swagger -->
-<!--            <dependency>-->
-<!--                <groupId>com.spring4all</groupId>-->
-<!--                <artifactId>swagger-spring-boot-starter</artifactId>-->
-<!--                <version>${swagger.version}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.spring4all</groupId>-->
+            <!--                <artifactId>swagger-spring-boot-starter</artifactId>-->
+            <!--                <version>${swagger.version}</version>-->
+            <!--            </dependency>-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
-
-
 
 
             <!-- common core -->
@@ -174,27 +193,6 @@
 
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <!-- lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <!-- 编译期执行 -->
-            <scope>provided</scope>
-        </dependency>
-        <!-- spring cloud bootstrap ，引入后可以使用 bootstrap.yml 读取 nacos 配置中心 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-
-    </dependencies>
 
     <build>
         <!-- 指定resources路径，让pom可以读取yml中的配置 -->
