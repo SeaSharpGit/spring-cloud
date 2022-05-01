@@ -8,7 +8,9 @@ import org.springframework.context.annotation.Bean;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.builders.RequestParameterBuilder;
 import springfox.documentation.oas.annotations.EnableOpenApi;
+import springfox.documentation.schema.ScalarType;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
@@ -31,9 +33,16 @@ public class SwaggerConfig {
 
     @Bean
     public Docket createRestApi() {
-        List<RequestParameter> headers = new ArrayList<>();
+        List<RequestParameter> headers = new ArrayList<RequestParameter>() {{
+            add(new RequestParameterBuilder().description("灰度")
+                    .in(ParameterType.HEADER)
+                    .name("version")
+                    .required(false)
+                    .query(a -> a.model(b -> b.scalarModel(ScalarType.STRING)))
+                    .build());
+        }};
         return new Docket(DocumentationType.SWAGGER_2)
-//                .host(swaggerProperties.getHost())
+                .host(swaggerProperties.getHost())
                 .apiInfo(apiInfo())
                 .globalRequestParameters(headers)
                 .select()

@@ -52,6 +52,11 @@ public class SwaggerProperties {
     private String termsOfServiceUrl = "";
 
     /**
+     * host
+     */
+    private String host = "";
+
+    /**
      * 联系人
      */
     private Contact contact = new Contact();

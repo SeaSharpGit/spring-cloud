@@ -10,12 +10,13 @@ import lombok.NoArgsConstructor;
 public class R<T> {
     private int code;
     private T data;
+    private String msg;
 
     public static <T> R<T> ok(T data) {
-        return new R<>(0, data);
+        return new R<>(0, data, null);
     }
 
-    public static R<String> error(String msg) {
-        return new R<>(1, msg);
+    public static R<Object> error(String msg) {
+        return new R<>(1, null, msg);
     }
 }
