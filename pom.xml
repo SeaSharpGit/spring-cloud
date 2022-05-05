@@ -27,7 +27,6 @@
         <mysql-connector.version>8.0.23</mysql-connector.version>
         <alibaba-sms.version>2.0.8</alibaba-sms.version>
         <spring-security-oauth.version>2.2.5.RELEASE</spring-security-oauth.version>
-        <!--        <swagger.version>2.0.2.RELEASE</swagger.version>-->
         <swagger.version>3.0.0</swagger.version>
 
     </properties>
@@ -37,7 +36,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <!-- 编译期执行 -->
+            <!-- 编译和运行时有效，打包时不会包含jar包 -->
             <scope>provided</scope>
         </dependency>
         <!-- spring cloud bootstrap ，引入后可以使用 bootstrap.yml 读取 nacos 配置中心 -->
@@ -141,12 +140,6 @@
                 <artifactId>spring-cloud-starter-oauth2</artifactId>
                 <version>${spring-security-oauth.version}</version>
             </dependency>
-            <!-- swagger -->
-            <!--            <dependency>-->
-            <!--                <groupId>com.spring4all</groupId>-->
-            <!--                <artifactId>swagger-spring-boot-starter</artifactId>-->
-            <!--                <version>${swagger.version}</version>-->
-            <!--            </dependency>-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-boot-starter</artifactId>
