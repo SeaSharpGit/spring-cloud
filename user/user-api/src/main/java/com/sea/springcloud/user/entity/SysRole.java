@@ -11,33 +11,18 @@ import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ApiModel("用户")
-public class SysUser extends Model<SysUser> {
+@ApiModel("角色")
+public class SysRole extends Model<SysRole> {
     /**
-     * 用户ID
+     * 主键
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 账号
-     */
-    private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
-
-    /**
-     * 名字
+     * 名称
      */
     private String name;
-
-    /**
-     * 可用标识
-     */
-    private Boolean enabled;
 
     /**
      * 删除标识

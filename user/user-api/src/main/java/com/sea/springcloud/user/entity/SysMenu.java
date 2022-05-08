@@ -11,33 +11,28 @@ import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ApiModel("用户")
-public class SysUser extends Model<SysUser> {
+@ApiModel("菜单")
+public class SysMenu extends Model<SysMenu> {
     /**
-     * 用户ID
+     * 主键
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 账号
-     */
-    private String username;
-
-    /**
-     * 密码
-     */
-    private String password;
-
-    /**
-     * 名字
+     * 名称
      */
     private String name;
 
     /**
-     * 可用标识
+     * 父级ID
      */
-    private Boolean enabled;
+    private Integer parentId;
+
+    /**
+     * 权限
+     */
+    private String auth;
 
     /**
      * 删除标识

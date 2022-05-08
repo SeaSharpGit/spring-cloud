@@ -4,7 +4,8 @@ import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class MyUserDetails implements UserDetails {
@@ -34,9 +35,9 @@ public class MyUserDetails implements UserDetails {
 
     private boolean credentialsNonExpired = true;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
+    /**
+     * 角色和权限集合
+     */
+    private List<? extends GrantedAuthority> authorities = new ArrayList<>();
 
 }

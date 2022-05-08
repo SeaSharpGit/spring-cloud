@@ -5,6 +5,7 @@ import com.sea.springcloud.common.security.annotation.NoAuth;
 import com.sea.springcloud.common.sms.util.SmsUtils;
 import com.sea.springcloud.user.entity.SysUser;
 import com.sea.springcloud.user.service.SysUserService;
+import com.sea.springcloud.user.vo.LoginUser;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +45,7 @@ public class SysUserController {
 
     @NoAuth
     @GetMapping("/loadUserByUsername/{username}")
-    public R<SysUser> loadUserByUsername(@PathVariable("username") String username){
+    public R<LoginUser> loadUserByUsername(@PathVariable("username") String username){
         return R.ok(sysUserService.loadUserByUsername(username));
     }
 
