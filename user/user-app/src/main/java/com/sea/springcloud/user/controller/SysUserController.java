@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
-@Api(value = "用户管理",tags = "用户管理")
+@Api(tags = "用户管理")
 public class SysUserController {
     private final SysUserService sysUserService;
     private final SmsUtils smsUtils;
@@ -35,17 +35,17 @@ public class SysUserController {
     @GetMapping("/sms")
     public void sms() {
         try {
-            smsUtils.sendMsg("18912387311","SMS_223587757",
-                    "username","admin",
-                    "password","123456");
-        }catch (Exception ex){
+            smsUtils.sendMsg("18912387311", "SMS_223587757",
+                    "username", "admin",
+                    "password", "123456");
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
 
     @NoAuth
     @GetMapping("/loadUserByUsername/{username}")
-    public R<LoginUser> loadUserByUsername(@PathVariable("username") String username){
+    public R<LoginUser> loadUserByUsername(@PathVariable("username") String username) {
         return R.ok(sysUserService.loadUserByUsername(username));
     }
 
