@@ -57,6 +57,7 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
+
         <!-- user api -->
         <dependency>
             <groupId>com.sea</groupId>
@@ -72,8 +73,6 @@
             <groupId>com.sea</groupId>
             <artifactId>common-security</artifactId>
         </dependency>
-
-
     </dependencies>
 
     <build>

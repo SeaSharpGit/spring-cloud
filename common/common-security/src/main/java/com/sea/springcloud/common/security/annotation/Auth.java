@@ -1,6 +1,6 @@
 package com.sea.springcloud.common.security.annotation;
 
-import com.sea.springcloud.common.security.AuthEnum;
+import com.sea.springcloud.common.security.enumeration.AuthEnum;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,6 +1,7 @@
 package com.sea.springcloud.auth.service;
 
 import com.sea.springcloud.auth.entity.MyClientDetails;
+import com.sea.springcloud.common.core.constant.MySecurityConstants;
 import com.sea.springcloud.user.entity.SysClient;
 import com.sea.springcloud.user.feign.FeignSysClientService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class MyClientDetailsService implements ClientDetailsService {
 
     @Override
     public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
-        SysClient sysClient = feignSysClientService.loadClientByClientId(clientId).getData();
+        SysClient sysClient = feignSysClientService.loadClientByClientId(clientId, MySecurityConstants.IN).getData();
         MyClientDetails result = new MyClientDetails();
         result.setClientId(sysClient.getClientId());
         result.setClientSecret(sysClient.getClientSecret());

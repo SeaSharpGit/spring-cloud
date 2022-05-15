@@ -1,7 +1,7 @@
 package com.sea.springcloud.common.security.config;
 
 import com.sea.springcloud.common.core.constant.MySecurityConstants;
-import com.sea.springcloud.common.security.AuthEnum;
+import com.sea.springcloud.common.security.enumeration.AuthEnum;
 import com.sea.springcloud.common.security.annotation.Auth;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -36,7 +36,7 @@ public class AuthAspect {
         if (auth.value() == AuthEnum.IN) {
             String header = request.getHeader(MySecurityConstants.Auth);
             if (header == null || !header.equals(MySecurityConstants.IN)) {
-                throw new AccessDeniedException("没有权限");
+                throw new AccessDeniedException("不允许访问");
             }
         }
     }

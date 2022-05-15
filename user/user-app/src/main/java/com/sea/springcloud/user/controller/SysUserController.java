@@ -1,7 +1,7 @@
 package com.sea.springcloud.user.controller;
 
 import com.sea.springcloud.common.core.entity.R;
-import com.sea.springcloud.common.security.AuthEnum;
+import com.sea.springcloud.common.security.enumeration.AuthEnum;
 import com.sea.springcloud.common.security.annotation.Auth;
 import com.sea.springcloud.common.sms.util.SmsUtils;
 import com.sea.springcloud.user.entity.SysUser;
@@ -29,20 +29,20 @@ public class SysUserController {
         return R.ok(sysUserService.loadUserByUsername(username));
     }
 
-    @GetMapping("/test")
-    @Auth(AuthEnum.NO_AUTH)
-    public R<SysUser> test() {
-        SysUser sysUser = sysUserService.getById(1);
-        return R.ok(sysUser);
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('user')")
+    public R<SysUser> getById(@PathVariable int id) {
+        return R.ok(sysUserService.getById(id));
     }
 
-    @GetMapping("/error")
-    @PreAuthorize("hasAnyAuthority('user')")
-    public void error() {
-        throw new RuntimeException("测试一下错误");
+    @Auth(AuthEnum.NO_AUTH)
+    @GetMapping("/noAuth")
+    public R<String> noAuth() {
+        return R.ok("noAuth");
     }
 
     @GetMapping("/sms")
+    @PreAuthorize("hasAnyAuthority('sms')")
     public void sms() {
         try {
             smsUtils.sendMsg("18912387311", "SMS_223587757",

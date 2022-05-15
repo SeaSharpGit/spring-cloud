@@ -1,4 +1,4 @@
-package com.sea.springcloud.common.security;
+package com.sea.springcloud.common.security.enumeration;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

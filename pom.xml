@@ -148,7 +148,7 @@
                 <artifactId>springfox-boot-starter</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
-            <!-- swagger 注解 -->
+            <!-- swagger注解 -->
             <dependency>
                 <groupId>io.swagger</groupId>
                 <artifactId>swagger-annotations</artifactId>
@@ -186,19 +186,26 @@
                 <artifactId>common-swagger</artifactId>
                 <version>${project.version}</version>
             </dependency>
-            <!-- user api -->
-            <dependency>
-                <groupId>com.sea</groupId>
-                <artifactId>user-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
             <!-- common security -->
             <dependency>
                 <groupId>com.sea</groupId>
                 <artifactId>common-security</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <!-- common log -->
+            <dependency>
+                <groupId>com.sea</groupId>
+                <artifactId>common-log</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
+
+            <!-- user api -->
+            <dependency>
+                <groupId>com.sea</groupId>
+                <artifactId>user-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

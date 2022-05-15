@@ -17,6 +17,14 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <optional>true</optional>
         </dependency>
+        <!-- openfeign -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+
         <!-- common core -->
         <dependency>
             <groupId>com.sea</groupId>
@@ -27,12 +35,6 @@
         <dependency>
             <groupId>com.sea</groupId>
             <artifactId>common-web</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <!-- openfeign -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
             <optional>true</optional>
         </dependency>
     </dependencies>

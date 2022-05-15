@@ -31,6 +31,12 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
+
+        <!-- common core -->
+        <dependency>
+            <groupId>com.sea</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
         <!-- common swagger -->
         <dependency>
             <groupId>com.sea</groupId>

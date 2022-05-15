@@ -54,6 +54,11 @@
         </dependency>
 
 
+        <!-- common core -->
+        <dependency>
+            <groupId>com.sea</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
         <!-- common web -->
         <dependency>
             <groupId>com.sea</groupId>
@@ -69,11 +74,6 @@
             <groupId>com.sea</groupId>
             <artifactId>user-api</artifactId>
         </dependency>
-        <!-- common core -->
-        <dependency>
-            <groupId>com.sea</groupId>
-            <artifactId>common-core</artifactId>
-        </dependency>
         <!-- common swagger -->
         <dependency>
             <groupId>com.sea</groupId>
@@ -84,7 +84,6 @@
             <groupId>com.sea</groupId>
             <artifactId>common-security</artifactId>
         </dependency>
-        
     </dependencies>
 
     <build>

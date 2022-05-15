@@ -1,5 +1,6 @@
 package com.sea.springcloud.auth.service;
 
+import com.sea.springcloud.common.core.constant.MySecurityConstants;
 import com.sea.springcloud.common.security.entity.MyUserDetails;
 import com.sea.springcloud.user.feign.FeignSysUserService;
 import com.sea.springcloud.user.vo.LoginUser;
@@ -24,7 +25,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        LoginUser loginUser = feignSysUserService.loadUserByUsername(username).getData();
+        LoginUser loginUser = feignSysUserService.loadUserByUsername(username, MySecurityConstants.IN).getData();
         MyUserDetails result = new MyUserDetails();
         result.setId(loginUser.getId());
         result.setUsername(loginUser.getUsername());
