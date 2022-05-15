@@ -1,6 +1,6 @@
 package com.sea.springcloud.common.security.config;
 
-import com.sea.springcloud.common.security.annotation.NoAuth;
+import com.sea.springcloud.common.security.annotation.Auth;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.http.HttpMethod;
@@ -41,8 +41,8 @@ public class NoAuthConfig implements InitializingBean {
     public void afterPropertiesSet() {
         Map<RequestMappingInfo, HandlerMethod> requestMap = applicationContext.getBean(RequestMappingHandlerMapping.class).getHandlerMethods();
         for (Map.Entry<RequestMappingInfo, HandlerMethod> entry : requestMap.entrySet()) {
-            if ((entry.getValue().getBeanType().isAnnotationPresent(NoAuth.class)
-                    || entry.getValue().getMethod().isAnnotationPresent(NoAuth.class))
+            if ((entry.getValue().getBeanType().isAnnotationPresent(Auth.class)
+                    || entry.getValue().getMethod().isAnnotationPresent(Auth.class))
                     && entry.getKey().getPatternsCondition() != null) {
                 Set<String> methods = entry.getKey().getMethodsCondition().getMethods().stream().map(RequestMethod::name).collect(Collectors.toSet());
                 for (String pattern : entry.getKey().getPatternsCondition().getPatterns()) {
