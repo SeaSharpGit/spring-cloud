@@ -1,7 +1,7 @@
 package com.sea.springcloud.user.controller;
 
 import com.sea.springcloud.common.core.entity.R;
-import com.sea.springcloud.common.security.enumeration.AuthEnum;
+import com.sea.springcloud.common.security.enums.AuthEnum;
 import com.sea.springcloud.common.security.annotation.Auth;
 import com.sea.springcloud.user.entity.SysClient;
 import com.sea.springcloud.user.service.SysClientService;

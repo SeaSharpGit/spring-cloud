@@ -3,4 +3,4 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.sea.springcloud.common.security.config.NoAuthConfig,\
   com.sea.springcloud.common.security.config.AuthAspect,\
   com.sea.springcloud.common.security.config.RedisConfig,\
-  com.sea.springcloud.common.security.service.MyResourceServerTokenServices
+  com.sea.springcloud.common.security.service.ResourceServerTokenService

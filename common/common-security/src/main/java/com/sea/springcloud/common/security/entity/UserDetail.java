@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class MyUserDetails implements UserDetails {
+public class UserDetail implements UserDetails {
     /**
      * 用户ID
      */

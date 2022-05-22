@@ -36,6 +36,7 @@ nbdist/
 ######################################################################
 # Others
 *.log
+*.log.gz
 *.xml.versionsBackup
 
 !*/build/*.java
