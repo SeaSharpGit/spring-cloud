@@ -37,6 +37,9 @@ public class AuthInFilter implements GlobalFilter, Ordered {
         return chain.filter(exchange);
     }
 
+    /**
+     * 值越小，优先级越高
+     */
     @Override
     public int getOrder() {
         return -1000;

@@ -22,3 +22,5 @@ security:
       client-secret: 123456
       scope: server
 
+
+

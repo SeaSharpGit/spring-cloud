@@ -38,7 +38,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <!-- 编译和运行时有效，打包时不会包含jar包 -->
+            <!-- 编译和运行时有效，打包时不会包含 jar 包 -->
             <scope>provided</scope>
         </dependency>
         <!-- spring cloud bootstrap ，引入后可以使用 bootstrap.yml 读取 nacos 配置中心 -->
@@ -85,7 +85,7 @@
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
                 <version>${spring-cloud-alibaba.version}</version>
-                <!-- 排除nacos对ribbon的依赖，不然会启动失败，spring cloud 2020以后使用spring-cloud-loadbalancer做负载均衡 -->
+                <!-- 排除 nacos 对 ribbon 的依赖，不然会启动失败，spring cloud 2020以后使用 spring cloud loadbalancer 做负载均衡 -->
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework.cloud</groupId>
@@ -98,7 +98,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring-boot.version}</version>
-                <!-- 使用undertow替换tomcat，需要排除掉tomcat -->
+                <!-- 使用 undertow 替换 tomcat ，需要排除掉 tomcat -->
                 <exclusions>
                     <exclusion>
                         <groupId>org.springframework.boot</groupId>
@@ -154,7 +154,7 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>${swagger-annotations.version}</version>
             </dependency>
-            <!-- Spring Boot 包含了 logback，锁定版本是为了解决漏洞 -->
+            <!-- spring boot 包含了 logback，锁定版本是为了解决漏洞 -->
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-core</artifactId>
@@ -210,14 +210,14 @@
     </dependencyManagement>
 
     <build>
-        <!-- 指定resources路径，让pom可以读取yml中的配置 -->
+        <!-- 指定 resources 路径，让 pom 可以读取 yml 中的配置 -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
-        <!-- 解决jar包无法运行问题：no main manifest attribute -->
+        <!-- 解决 jar 包无法运行问题：no main manifest attribute -->
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -236,7 +236,7 @@
         </pluginManagement>
     </build>
 
-    <!-- maven仓库代理 -->
+    <!-- maven 仓库代理 -->
     <repositories>
         <repository>
             <id>aliyun</id>
