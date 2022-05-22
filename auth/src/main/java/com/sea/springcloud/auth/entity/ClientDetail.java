@@ -1,6 +1,5 @@
 package com.sea.springcloud.auth.entity;
 
-import com.alibaba.cloud.commons.lang.StringUtils;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -23,8 +22,8 @@ public class ClientDetail implements ClientDetails {
 
 
     @Override
-    public boolean isSecretRequired(){
-        return StringUtils.isNotEmpty(clientSecret);
+    public boolean isSecretRequired() {
+        return true;
     }
 
     @Override
@@ -47,6 +46,10 @@ public class ClientDetail implements ClientDetails {
         return new HashSet<>();
     }
 
+    /**
+     * 是否自动放行
+     * true：直接返回授权码；false：跳转到授权页面手动授权
+     */
     @Override
     public boolean isAutoApprove(String s) {
         return true;

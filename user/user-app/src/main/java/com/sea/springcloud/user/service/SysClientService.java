@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SysClientService extends CommonServiceImpl<SysClientMapper, SysClient> {
-    public SysClient loadClientByClientId(String id) {
+    public SysClient loadClientById(String id) {
         SysClient sysClient = list(Wrappers.<SysClient>lambdaQuery()
-                        .eq(SysClient::getClientId, id)
+                        .eq(SysClient::getId, id)
                         .eq(SysClient::getDeleteFlag, false))
                 .stream().findFirst().orElse(null);
         if (sysClient == null) {

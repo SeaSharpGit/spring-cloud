@@ -22,7 +22,7 @@ public class SysClientController {
     @Auth(AuthEnum.IN)
     @GetMapping("/loadByClientId/{id}")
     public R<SysClient> loadByClientId(@PathVariable("id") String id){
-        return R.ok(sysClientService.loadClientByClientId(id));
+        return R.ok(sysClientService.loadClientById(id));
     }
 
 }

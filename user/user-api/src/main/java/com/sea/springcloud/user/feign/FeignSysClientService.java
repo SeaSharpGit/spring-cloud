@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @FeignClient(contextId = "feignSysClientService", name = FeignConstants.USER)
 public interface FeignSysClientService {
     @GetMapping("/client/loadByClientId/{clientId}")
-    R<SysClient> loadClientByClientId(@PathVariable("clientId") String clientId, @RequestHeader(MySecurityConstants.Auth) String auth);
+    R<SysClient> loadClientById(@PathVariable("clientId") String clientId, @RequestHeader(MySecurityConstants.Auth) String auth);
 
 }

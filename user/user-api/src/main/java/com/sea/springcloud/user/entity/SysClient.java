@@ -1,7 +1,5 @@
 package com.sea.springcloud.user.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -14,20 +12,14 @@ import java.time.LocalDateTime;
 @ApiModel("客户端")
 public class SysClient extends Model<SysClient> {
     /**
-     * 主键
-     */
-    @TableId(type = IdType.AUTO)
-    private Integer id;
-
-    /**
      * 客户端账号
      */
-    private String clientId;
+    private String id;
 
     /**
      * 客户端密码
      */
-    private String clientSecret;
+    private String secret;
 
     /**
      * 授权类型

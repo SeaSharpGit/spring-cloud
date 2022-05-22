@@ -22,11 +22,11 @@ public class MyClientDetailsService implements ClientDetailsService {
     private final FeignSysClientService feignSysClientService;
 
     @Override
-    public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
-        SysClient sysClient = feignSysClientService.loadClientByClientId(clientId, MySecurityConstants.IN).getData();
+    public ClientDetails loadClientByClientId(String id) throws ClientRegistrationException {
+        SysClient sysClient = feignSysClientService.loadClientById(id, MySecurityConstants.IN).getData();
         ClientDetail result = new ClientDetail();
-        result.setClientId(sysClient.getClientId());
-        result.setClientSecret(sysClient.getClientSecret());
+        result.setClientId(sysClient.getId());
+        result.setClientSecret(sysClient.getSecret());
         for (String grantType : sysClient.getAuthorizedGrantTypes().split(",")) {
             result.getAuthorizedGrantTypes().add(grantType);
         }
