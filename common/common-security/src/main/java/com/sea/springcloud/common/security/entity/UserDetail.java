@@ -29,10 +29,19 @@ public class UserDetail implements UserDetails {
      */
     private boolean enabled;
 
+    /**
+     * 账号未过期
+     */
     private boolean accountNonExpired = true;
 
+    /**
+     * 账号未锁定
+     */
     private boolean accountNonLocked = true;
 
+    /**
+     * 密码未过期
+     */
     private boolean credentialsNonExpired = true;
 
     /**

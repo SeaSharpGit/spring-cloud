@@ -9,6 +9,7 @@ import com.sea.springcloud.user.mapper.SysUserMapper;
 import com.sea.springcloud.user.mapper.SysUserRoleMapper;
 import com.sea.springcloud.user.vo.LoginUser;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class SysUserService extends CommonServiceImpl<SysUserMapper, SysUser> {
         SysUser sysUser = list(Wrappers.<SysUser>lambdaQuery().eq(SysUser::getUsername, username)
                 .eq(SysUser::getDeleteFlag, false)).stream().findFirst().orElse(null);
         if (sysUser == null) {
-            throw new IllegalArgumentException("用户名错误");
+            throw new UsernameNotFoundException("用户名错误");
         }
         LoginUser result = new LoginUser();
         result.setId(sysUser.getId());
