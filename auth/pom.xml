@@ -73,6 +73,11 @@
             <groupId>com.sea</groupId>
             <artifactId>common-security</artifactId>
         </dependency>
+        <!-- common web -->
+        <dependency>
+            <groupId>com.sea</groupId>
+            <artifactId>common-web</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
