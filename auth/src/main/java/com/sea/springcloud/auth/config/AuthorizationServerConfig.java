@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -16,6 +19,8 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 
 /**
  * 授权服务器
+ * 如果要重写鉴权流程，需要重写：{@link AuthenticationProvider} 来代替{@link DaoAuthenticationProvider}
+ * {@link AuthenticationManager}的作用只是传递一个@{@link Authentication}
  */
 @Configuration
 @EnableAuthorizationServer
