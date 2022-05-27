@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.netty.util.internal.StringUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
 import org.springframework.cloud.gateway.route.InMemoryRouteDefinitionRepository;
@@ -60,32 +61,23 @@ public class DynamicRouteDefinitionRepository implements RouteDefinitionReposito
 
     private void initDynamicRoute(ConfigService configService) throws NacosException, JsonProcessingException {
         String configInfo = configService.getConfig(dataId, group, 5000);
-        List<RouteDefinition> routeDefinitions = objectMapper.readValue(configInfo, new TypeReference<List<RouteDefinition>>() {
-        });
-        for (RouteDefinition item : routeDefinitions) {
-            addRoute(item);
-        }
+        objectMapper.readValue(configInfo, new TypeReference<List<RouteDefinition>>() {
+        }).forEach(this::addRoute);
         refresh();
     }
 
     private void addDynamicRouteListener(ConfigService configService) throws NacosException {
         configService.addListener(dataId, group, new Listener() {
+            @SneakyThrows
             @Override
             public void receiveConfigInfo(String configInfo) {
                 routes.clear();
                 if (StringUtil.isNullOrEmpty(configInfo)) {
                     return;
                 }
-                try {
-                    List<RouteDefinition> routeDefinitions = objectMapper.readValue(configInfo, new TypeReference<List<RouteDefinition>>() {
-                    });
-                    for (RouteDefinition item : routeDefinitions) {
-                        addRoute(item);
-                    }
-                    refresh();
-                } catch (Exception e) {
-                    log.error("receiveConfigInfo error：" + e.getLocalizedMessage());
-                }
+                objectMapper.readValue(configInfo, new TypeReference<List<RouteDefinition>>() {
+                }).forEach(a->addRoute(a));
+                refresh();
             }
 
             @Override
