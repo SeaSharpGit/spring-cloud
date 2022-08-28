@@ -1,5 +1,5 @@
 server:
-  port: 10001
+  port: 10002
 
 spring:
   profiles:
@@ -10,8 +10,11 @@ spring:
     nacos:
       discovery:
         server-addr: ${NACOS-HOST:springcloud-nacos}:${NACOS-PORT:8848}
+        namespace: springcloud
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
         file-extension: yml
         shared-configs: application.${spring.cloud.nacos.config.file-extension}
+
 

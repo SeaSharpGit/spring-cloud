@@ -2,6 +2,7 @@ package com.sea.springcloud.gateway.route;
 
 import com.alibaba.cloud.nacos.NacosConfigProperties;
 import com.alibaba.nacos.api.NacosFactory;
+import com.alibaba.nacos.api.PropertyKeyConst;
 import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
@@ -28,6 +29,7 @@ import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.Executor;
 
 /**
@@ -39,7 +41,6 @@ import java.util.concurrent.Executor;
 @RequiredArgsConstructor
 public class DynamicRouteDefinitionRepository implements RouteDefinitionRepository, ApplicationEventPublisherAware {
     private static final String dataId = "gateway-router.yml";
-    private static final String group = "DEFAULT_GROUP";
     private static final Map<String, RouteDefinition> routes = new HashMap<>();
 
     private final NacosConfigProperties nacosConfigProperties;
@@ -51,7 +52,11 @@ public class DynamicRouteDefinitionRepository implements RouteDefinitionReposito
     @PostConstruct
     public void dynamicRouteByNacosListener() {
         try {
-            ConfigService configService = NacosFactory.createConfigService(nacosConfigProperties.getServerAddr());
+            Properties properties = new Properties() {{
+                setProperty(PropertyKeyConst.SERVER_ADDR, nacosConfigProperties.getServerAddr());
+                setProperty(PropertyKeyConst.NAMESPACE, nacosConfigProperties.getNamespace());
+            }};
+            ConfigService configService = NacosFactory.createConfigService(properties);
             initDynamicRoute(configService);
             addDynamicRouteListener(configService);
         } catch (Exception e) {
@@ -60,14 +65,14 @@ public class DynamicRouteDefinitionRepository implements RouteDefinitionReposito
     }
 
     private void initDynamicRoute(ConfigService configService) throws NacosException, JsonProcessingException {
-        String configInfo = configService.getConfig(dataId, group, 5000);
+        String configInfo = configService.getConfig(dataId, nacosConfigProperties.getGroup(), 5000);
         objectMapper.readValue(configInfo, new TypeReference<List<RouteDefinition>>() {
         }).forEach(this::addRoute);
         refresh();
     }
 
     private void addDynamicRouteListener(ConfigService configService) throws NacosException {
-        configService.addListener(dataId, group, new Listener() {
+        configService.addListener(dataId, nacosConfigProperties.getGroup(), new Listener() {
             @SneakyThrows
             @Override
             public void receiveConfigInfo(String configInfo) {
@@ -76,7 +81,7 @@ public class DynamicRouteDefinitionRepository implements RouteDefinitionReposito
                     return;
                 }
                 objectMapper.readValue(configInfo, new TypeReference<List<RouteDefinition>>() {
-                }).forEach(a->addRoute(a));
+                }).forEach(a -> addRoute(a));
                 refresh();
             }
 
