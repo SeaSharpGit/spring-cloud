@@ -13,13 +13,24 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 public class XxlJobProperties {
     private String accessToken;
 
-    private XxlJobAdminProperties admin = new XxlJobAdminProperties();
+    private Admin admin = new Admin();
+
+    private Executor executor = new Executor();
 
     @Data
-    public static class XxlJobAdminProperties {
+    public static class Admin {
         /**
          * xxl-job-admin地址
          */
         private String addresses;
     }
+
+    @Data
+    public static class Executor {
+        /**
+         * 执行器端口
+         */
+        private Integer port;
+    }
+
 }
