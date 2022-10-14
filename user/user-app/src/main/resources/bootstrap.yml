@@ -17,3 +17,4 @@ spring:
         file-extension: yml
         shared-configs: application.${spring.cloud.nacos.config.file-extension}
 
+
