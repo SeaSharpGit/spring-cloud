@@ -18,6 +18,7 @@
         <module>common-swagger</module>
         <module>common-security</module>
         <module>common-log</module>
+        <module>common-xxljob</module>
     </modules>
 
 </project>

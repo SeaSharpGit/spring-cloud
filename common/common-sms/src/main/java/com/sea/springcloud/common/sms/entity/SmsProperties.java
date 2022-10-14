@@ -11,7 +11,6 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 @ConfigurationProperties(prefix = "sms")
 @RefreshScope
 public class SmsProperties {
-
     /**
      * 短信开关
      */

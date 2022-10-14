@@ -84,6 +84,11 @@
             <groupId>com.sea</groupId>
             <artifactId>common-security</artifactId>
         </dependency>
+        <!-- common xxljob -->
+        <dependency>
+            <groupId>com.sea</groupId>
+            <artifactId>common-xxljob</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
