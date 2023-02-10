@@ -226,7 +226,7 @@
     </dependencyManagement>
 
     <build>
-        <!-- 指定 resources 路径，让 pom 可以读取 yml 中的配置 -->
+        <!-- 指定 resources 路径，让 yml 可以读取 pom 中的配置 -->
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
